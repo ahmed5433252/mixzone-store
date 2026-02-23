@@ -3,94 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mix Zone | Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<title>Mix Zone Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
-body{background:#0a0f2c;color:white}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+
+body{
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+color:white;
+}
 
 nav{
-background:#060b1f;
+background:#0b132b;
 padding:20px;
-position:relative;
 text-align:center;
-font-size:22px;
+font-size:24px;
 font-weight:bold;
-letter-spacing:2px;
-color:#00f0ff;
+position:relative;
+color:#00f5ff;
+letter-spacing:1px;
 }
 
 .owner{
 position:absolute;
 left:20px;
-top:20px;
-font-size:16px;
-color:#ff7b00;
+top:22px;
+font-size:15px;
+color:#ff9800;
 }
 
 .container{
 padding:40px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
 gap:30px;
 }
 
 .card{
-background:#11183d;
-border-radius:15px;
+background:#16213e;
+border-radius:20px;
 padding:20px;
 text-align:center;
 transition:0.4s;
+box-shadow:0 0 15px rgba(0,255,255,0.1);
 }
 
 .card:hover{
 transform:translateY(-10px);
-box-shadow:0 0 25px #00f0ff;
+box-shadow:0 0 25px #00f5ff;
 }
 
 .card img{
 width:100%;
-height:250px;
+height:220px;
 object-fit:contain;
-background:#0a0f2c;
+background:#0b132b;
+border-radius:15px;
 padding:10px;
-border-radius:12px;
 }
 
-h3{margin:15px 0;color:#00f0ff}
+h3{
+margin:15px 0;
+color:#00f5ff;
+}
 
-.specs{font-size:13px;line-height:1.7;margin-bottom:10px;color:#ccc}
+.specs{
+font-size:14px;
+line-height:1.8;
+color:#ccc;
+margin-bottom:10px;
+}
 
-.price{color:#ff7b00;font-size:18px;margin:10px 0}
+.price{
+color:#ff9800;
+font-size:18px;
+margin:10px 0;
+font-weight:bold;
+}
 
 button{
-background:#00f0ff;
+background:#00f5ff;
 border:none;
-padding:10px 20px;
-border-radius:20px;
+padding:10px 22px;
+border-radius:30px;
 cursor:pointer;
 transition:0.3s;
+font-weight:bold;
 }
 
 button:hover{
-background:#ff7b00;
+background:#ff9800;
 transform:scale(1.1);
 }
 
-.chat-button{
+/* Chat Button */
+.chat-toggle{
 position:fixed;
 bottom:20px;
 right:20px;
-background:#ff7b00;
+background:#ff9800;
 width:60px;
 height:60px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:25px;
+font-size:26px;
 cursor:pointer;
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+.chat-box{
+position:fixed;
+bottom:90px;
+right:20px;
+background:white;
+color:black;
+width:260px;
+border-radius:15px;
+padding:15px;
+display:none;
+}
+
+.chat-box input{
+width:100%;
+padding:8px;
+margin-top:10px;
+}
+
+.chat-box button{
+margin-top:8px;
+width:100%;
+background:#00c853;
+color:white;
+}
+
+@media(max-width:768px){
+.owner{position:static;margin-top:10px}
 }
 </style>
 </head>
@@ -104,14 +155,13 @@ Mix Zone Store
 
 <div class="container">
 
-<!-- Mobile -->
 <div class="card">
-<img src="https://i.postimg.cc/D0V2LQqg/galaxy-a06.png">
+<img src="https://images.unsplash.com/photo-1695048133142-1a204e9a4c3c">
 <h3>Samsung Galaxy A06</h3>
 <div class="specs">
 شاشة 6.7 بوصة<br>
 RAM 4GB<br>
-128GB Storage<br>
+128GB<br>
 كاميرا 50MP<br>
 بطارية 5000mAh
 </div>
@@ -119,70 +169,60 @@ RAM 4GB<br>
 <button onclick="order('Galaxy A06')">اطلب الآن</button>
 </div>
 
-<!-- Laptop -->
 <div class="card">
-<img src="https://i.postimg.cc/SsWzY4xV/hp-probook.png">
+<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8">
 <h3>HP ProBook 450</h3>
 <div class="specs">
 Intel Core i5<br>
 8GB RAM<br>
 256GB SSD<br>
-15.6 FHD<br>
-بطارية قوية
+15.6 FHD
 </div>
 <div class="price">18,000 جنيه</div>
 <button onclick="order('HP ProBook 450')">اطلب الآن</button>
 </div>
 
-<!-- AirPods -->
 <div class="card">
-<img src="https://i.postimg.cc/W4cHjM9X/airpods3.jpg">
+<img src="https://images.unsplash.com/photo-1585386959984-a41552231658">
 <h3>AirPods 3</h3>
 <div class="specs">
 Spatial Audio<br>
 6 ساعات تشغيل<br>
-Bluetooth سريع<br>
-شحن MagSafe
+Bluetooth سريع
 </div>
 <div class="price">1,200 جنيه</div>
 <button onclick="order('AirPods 3')">اطلب الآن</button>
 </div>
 
-<!-- Watch -->
 <div class="card">
-<img src="https://i.postimg.cc/6pXbN8mL/x8watch.jpg">
+<img src="https://images.unsplash.com/photo-1606229365485-93a3b8ee0385">
 <h3>X8 Ultra Plus</h3>
 <div class="specs">
 مكالمات بلوتوث<br>
-قياس نبضات القلب<br>
-أوضاع رياضية<br>
+قياس نبض القلب<br>
 بطارية 3 أيام
 </div>
 <div class="price">950 جنيه</div>
 <button onclick="order('X8 Ultra Plus')">اطلب الآن</button>
 </div>
 
-<!-- Keyboard -->
 <div class="card">
-<img src="https://i.postimg.cc/8zQZk7cJ/keyboard-rgb.png">
+<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7">
 <h3>RGB Gaming Keyboard</h3>
 <div class="specs">
 إضاءة RGB<br>
 Anti-Ghosting<br>
-USB سريع<br>
-مناسب للألعاب
+USB سريع
 </div>
 <div class="price">750 جنيه</div>
 <button onclick="order('RGB Keyboard')">اطلب الآن</button>
 </div>
 
-<!-- Mouse -->
 <div class="card">
-<img src="https://i.postimg.cc/wj5sRZ5P/mouse-rgb.jpg">
+<img src="https://images.unsplash.com/photo-1587202372634-32705e3bf49c">
 <h3>RGB Gaming Mouse</h3>
 <div class="specs">
 DPI 7200<br>
-إضاءة RGB<br>
 6 أزرار<br>
 دقة عالية
 </div>
@@ -192,12 +232,25 @@ DPI 7200<br>
 
 </div>
 
+<!-- Chat Bot -->
+<div class="chat-toggle" onclick="toggleChat()">💬</div>
+
+<div class="chat-box" id="chatBox">
+أهلاً 👋 محتاج مساعدة؟
+<input type="text" placeholder="اكتب سؤالك">
+<button onclick="alert('سيتم التواصل معك قريباً')">إرسال</button>
+</div>
+
 <script>
 function order(product){
 let phone="2010XXXXXXXX"; 
 let message="عايز أطلب "+product+" من Mix Zone";
-let url="https://wa.me/"+phone+"?text="+encodeURIComponent(message);
-window.open(url,"_blank");
+window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message));
+}
+
+function toggleChat(){
+let box=document.getElementById("chatBox");
+box.style.display=box.style.display==="block"?"none":"block";
 }
 </script>
 
