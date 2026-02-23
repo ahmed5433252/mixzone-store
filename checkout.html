@@ -7,15 +7,15 @@
 
 <style>
 body{
-background:#0f172a;
+background:linear-gradient(135deg,#0f172a,#1e293b);
 color:white;
 font-family:Arial;
 margin:0;
-padding:40px;
+padding:30px;
 }
 
 .container{
-max-width:500px;
+max-width:600px;
 margin:auto;
 background:#1e293b;
 padding:30px;
@@ -26,6 +26,24 @@ h2{
 text-align:center;
 color:#00eaff;
 margin-bottom:20px;
+}
+
+.cart-summary{
+background:#111827;
+padding:15px;
+border-radius:10px;
+margin-bottom:20px;
+}
+
+.cart-item{
+font-size:14px;
+margin-bottom:5px;
+}
+
+.total{
+margin-top:10px;
+color:#f97316;
+font-weight:bold;
 }
 
 input,textarea{
@@ -44,6 +62,7 @@ border:none;
 border-radius:8px;
 font-weight:bold;
 cursor:pointer;
+transition:0.3s;
 }
 
 button:hover{
@@ -57,32 +76,69 @@ background:#00eaff;
 <div class="container">
 <h2>إتمام الطلب</h2>
 
-<input type="text" id="name" placeholder="الاسم بالكامل">
-<input type="text" id="phone" placeholder="رقم الموبايل">
-<input type="text" id="address" placeholder="العنوان بالتفصيل">
-<input type="text" id="city" placeholder="المحافظة">
+<div class="cart-summary">
+<h3>المنتجات المختارة:</h3>
+<div id="cartItems"></div>
+<div class="total">الإجمالي: <span id="total">0</span> جنيه</div>
+</div>
+
+<input type="text" id="name" placeholder="الاسم بالكامل" required>
+<input type="text" id="phone" placeholder="رقم الموبايل" required>
+<input type="text" id="address" placeholder="العنوان بالتفصيل" required>
+<input type="text" id="city" placeholder="المحافظة" required>
 <textarea id="notes" placeholder="ملاحظات إضافية"></textarea>
 
 <button onclick="sendOrder()">تأكيد الطلب</button>
 </div>
 
 <script>
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let total = 0;
+
+let cartContainer = document.getElementById("cartItems");
+
+cart.forEach(item=>{
+total += item.price;
+cartContainer.innerHTML += 
+`<div class="cart-item">${item.name} - ${item.price} جنيه</div>`;
+});
+
+document.getElementById("total").innerText = total;
+
 function sendOrder(){
+
+if(cart.length === 0){
+alert("السلة فارغة!");
+return;
+}
+
 let name=document.getElementById("name").value;
 let phone=document.getElementById("phone").value;
 let address=document.getElementById("address").value;
 let city=document.getElementById("city").value;
 let notes=document.getElementById("notes").value;
 
+if(!name || !phone || !address || !city){
+alert("من فضلك املأ كل البيانات");
+return;
+}
+
 let owner="201552998637";
 
-let message=
-"طلب جديد من Mix Zone:%0A%0A"+
-"الاسم: "+name+"%0A"+
-"رقم العميل: "+phone+"%0A"+
-"العنوان: "+address+"%0A"+
-"المحافظة: "+city+"%0A"+
-"ملاحظات: "+notes;
+let message="طلب جديد من Mix Zone:%0A%0A";
+
+cart.forEach(item=>{
+message+=item.name+" - "+item.price+" جنيه%0A";
+});
+
+message+="%0Aالإجمالي: "+total+" جنيه%0A%0A";
+message+="الاسم: "+name+"%0A";
+message+="رقم العميل: "+phone+"%0A";
+message+="العنوان: "+address+"%0A";
+message+="المحافظة: "+city+"%0A";
+message+="ملاحظات: "+notes;
+
+localStorage.removeItem("cart");
 
 window.open("https://wa.me/"+owner+"?text="+message);
 }
