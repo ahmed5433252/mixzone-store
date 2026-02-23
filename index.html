@@ -298,6 +298,152 @@ margin-top:40px;
 <p>© 2026 Mix Zone Store</p>
 <p>Ahmed Waleed</p>
 </footer>
+<style>
+.chat-toggle{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#00f0ff;
+color:black;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+cursor:pointer;
+font-size:26px;
+box-shadow:0 0 20px #00f0ff;
+z-index:999;
+}
 
+.chat-box{
+position:fixed;
+bottom:90px;
+right:20px;
+width:340px;
+height:450px;
+background:#1e293b;
+border-radius:15px;
+display:none;
+flex-direction:column;
+overflow:hidden;
+box-shadow:0 0 25px #00f0ff88;
+z-index:999;
+}
+
+.chat-header{
+background:#00f0ff;
+color:black;
+padding:15px;
+font-weight:bold;
+text-align:center;
+}
+
+.chat-messages{
+flex:1;
+padding:10px;
+overflow-y:auto;
+font-size:14px;
+}
+
+.chat-input{
+display:flex;
+border-top:1px solid #333;
+}
+
+.chat-input input{
+flex:1;
+padding:10px;
+border:none;
+outline:none;
+}
+
+.chat-input button{
+background:#00f0ff;
+border:none;
+padding:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.message{margin:6px 0;}
+.user{color:#00f0ff;}
+.bot{color:white;}
+</style>
+
+<div class="chat-toggle" onclick="toggleChat()">🤖</div>
+
+<div class="chat-box" id="chatBox">
+<div class="chat-header">Mix Zone Smart Assistant</div>
+<div class="chat-messages" id="chatMessages">
+<div class="message bot">🔥 أهلاً بيك في Mix Zone! قولّي أقدر أساعدك إزاي؟</div>
+</div>
+<div class="chat-input">
+<input type="text" id="userInput" placeholder="اكتب سؤالك هنا...">
+<button onclick="sendMessage()">إرسال</button>
+</div>
+</div>
+
+<script>
+function toggleChat(){
+let box=document.getElementById("chatBox");
+box.style.display=box.style.display==="flex"?"none":"flex";
+}
+
+function sendMessage(){
+let input=document.getElementById("userInput");
+let msg=input.value.trim();
+if(msg==="") return;
+
+let messages=document.getElementById("chatMessages");
+
+messages.innerHTML+=`<div class="message user">أنت: ${msg}</div>`;
+
+let reply = smartReply(msg);
+
+setTimeout(()=>{
+messages.innerHTML+=`<div class="message bot">🤖 ${reply}</div>`;
+messages.scrollTop=messages.scrollHeight;
+},600);
+
+input.value="";
+messages.scrollTop=messages.scrollHeight;
+}
+
+function smartReply(text){
+text=text.toLowerCase();
+
+if(text.includes("السلام")||text.includes("اهلا")||text.includes("هاي"))
+return "أهلاً وسهلاً 👋 عندنا موبايلات - لابتوبات - أجهزة جيمنج. تحب أساعدك في إيه؟";
+
+if(text.includes("سعر")||text.includes("بكام"))
+return "قولّي الميزانية كام وأنا أرشحلك أفضل اختيار 🔥";
+
+if(text.includes("موبايل"))
+return "📱 عندنا أحدث الموبايلات بأسعار ممتازة. تحب فئة اقتصادية ولا متوسطة ولا فلاجشيب؟";
+
+if(text.includes("لابتوب"))
+return "💻 تحب لابتوب دراسة ولا جيمنج؟ قولّي استخدامك وأنا أساعدك.";
+
+if(text.includes("كيبورد")||text.includes("ماوس")||text.includes("جيمنج"))
+return "🎮 عندنا Gaming Zone كامل RGB باحترافية عالية. تحب مستوى متوسط ولا احترافي؟";
+
+if(text.includes("عنوان")||text.includes("فين"))
+return "📍 إحنا في المطرية - دقهلية ونشحن لجميع المحافظات 🚚";
+
+if(text.includes("دفع"))
+return "💵 الدفع عند الاستلام متاح لجميع المحافظات.";
+
+if(text.match(/\d+/)){
+return "بالميزانية دي أقدر أرشحلك اختيار ممتاز جدًا 👌 الأفضل تتواصل مباشرة مع المالك لتأكيد الطلب 📞 أحمد وليد 01552998637";
+}
+
+if(text.includes("طلب")||text.includes("اشتري"))
+return "لإتمام الطلب بسرعة 📞 تواصل مباشرة مع المالك أحمد وليد 01552998637";
+
+return "ممكن توضح سؤالك أكتر؟ 👌 ولو حابب تتواصل مباشرة 📞 أحمد وليد 01552998637";
+}
+</script>
 </body>
 </html>
