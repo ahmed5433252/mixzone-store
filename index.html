@@ -388,47 +388,87 @@ cursor:pointer;
 </div>
 
 <script>
-document.getElementById("chatToggle").onclick=function(){
-let box=document.getElementById("chatBox");
-box.style.display=box.style.display==="flex"?"none":"flex";
+<script>
+const ownerNumber = "015552998637";
+const ownerName = "Ahmed Waleed";
+
+document.getElementById("chatToggle").onclick = function () {
+    let box = document.getElementById("chatBox");
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
 }
 
-function sendMessage(){
-let input=document.getElementById("userInput");
-let msg=input.value.trim();
-if(msg==="") return;
-
-let body=document.getElementById("chatBody");
-body.innerHTML+=`<div class="user">${msg}</div>`;
-
-let reply="";
-let m=msg.toLowerCase();
-
-if(m.includes("اهلا")||m.includes("مرحبا")){
-reply="أهلاً وسهلاً 👋 عايز موبايلات ولا لابتوبات؟";
-}
-else if(m.includes("موبايل")){
-reply="هحولك لصفحة الموبايلات 🔥";
-setTimeout(()=>location.href="mobiles.html",1500);
-}
-else if(m.includes("لابتوب")){
-reply="هحولك لصفحة اللابتوبات 💻";
-setTimeout(()=>location.href="laptops.html",1500);
-}
-else if(m.includes("رقم")||m.includes("تواصل")){
-reply="لأي استفسار تواصل مع أحمد وليد 📞 015552998637";
-}
-else{
-reply="اكتب موبايل أو لابتوب أو رقم للتواصل 👌";
+function addMessage(text, type) {
+    let body = document.getElementById("chatBody");
+    body.innerHTML += `<div class="${type}">${text}</div>`;
+    body.scrollTop = body.scrollHeight;
 }
 
-setTimeout(()=>{
-body.innerHTML+=`<div class="bot">${reply}</div>`;
-body.scrollTop=body.scrollHeight;
-},800);
+function sendMessage() {
+    let input = document.getElementById("userInput");
+    let msg = input.value.trim();
+    if (msg === "") return;
 
-input.value="";
+    addMessage(msg, "user");
+
+    let m = msg.toLowerCase();
+    let reply = "";
+
+    // ترحيب
+    if (m.includes("اهلا") || m.includes("مرحبا") || m.includes("السلام") || m.includes("هاي")) {
+        reply = "أهلاً بيك في Mix Zone 👋 تحب تشوف موبايلات 📱 ولا لابتوبات 💻 ولا أجهزة جيمنج 🎮؟";
+    }
+
+    // موبايلات
+    else if (m.includes("موبايل") || m.includes("موبيل") || m.includes("فون") || m.includes("iphone") || m.includes("سامسونج")) {
+        reply = "تمام 🔥 هحولك على أحدث الموبايلات حالًا...";
+        setTimeout(() => location.href = "mobiles.html", 1500);
+    }
+
+    // لابتوبات
+    else if (m.includes("لابتوب") || m.includes("لاب") || m.includes("كمبيوتر")) {
+        reply = "جاهز 💻 هحولك على أقوى اللابتوبات...";
+        setTimeout(() => location.href = "laptops.html", 1500);
+    }
+
+    // جيمنج
+    else if (m.includes("جيمنج") || m.includes("gaming") || m.includes("كيبورد") || m.includes("ماوس")) {
+        reply = "يلا بينا 🔥 هحولك على قسم الجيمنج...";
+        setTimeout(() => location.href = "gaming.html", 1500);
+    }
+
+    // أسعار
+    else if (m.includes("سعر") || m.includes("بكام") || m.includes("تكلفة")) {
+        reply = "كل الأسعار موجودة في صفحات المنتجات 👌 ولو محتاج مساعدة تواصل مع " + ownerName + " 📞 " + ownerNumber;
+    }
+
+    // تواصل
+    else if (m.includes("رقم") || m.includes("تواصل") || m.includes("اتصال") || m.includes("واتساب")) {
+        reply = "لأي استفسار تواصل مباشرة مع " + ownerName + " 📞 " + ownerNumber;
+    }
+
+    // مواصفات
+    else if (m.includes("مواصفات") || m.includes("امكانيات") || m.includes("مميزات")) {
+        reply = "كل منتج فيه صفحة تفاصيل كاملة بالمواصفات 🔥 تحب أحولك لموبايلات ولا لابتوبات؟";
+    }
+
+    // رد افتراضي ذكي
+    else {
+        reply = "ممكن تكتب موبايل 📱 أو لابتوب 💻 أو جيمنج 🎮 أو رقم للتواصل 👌";
+    }
+
+    setTimeout(() => {
+        addMessage(reply, "bot");
+    }, 600);
+
+    input.value = "";
 }
+
+// ارسال بالزر Enter
+document.getElementById("userInput").addEventListener("keypress", function(e){
+    if(e.key === "Enter"){
+        sendMessage();
+    }
+});
 </script>
 
 </body>
