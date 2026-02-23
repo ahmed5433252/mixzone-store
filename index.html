@@ -14,6 +14,7 @@
 body{
 background:linear-gradient(135deg,#0f172a,#1e293b);
 color:white;
+overflow-x:hidden;
 }
 
 nav{
@@ -53,6 +54,7 @@ transition:.3s;
 color:#00f0ff;
 }
 
+/* HERO */
 .hero{
 height:85vh;
 background:url("https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=1600&q=80") center/cover;
@@ -92,6 +94,7 @@ transition:.3s;
 background:white;
 }
 
+/* FEATURES */
 .features{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
@@ -119,7 +122,6 @@ margin-bottom:20px;
 }
 
 /* PRODUCTS */
-
 .products-preview{
 padding:60px 50px;
 text-align:center;
@@ -133,8 +135,16 @@ font-size:32px;
 
 .preview-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:25px;
+grid-template-columns:repeat(3,1fr);
+gap:30px;
+}
+
+@media(max-width:992px){
+.preview-grid{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:600px){
+.preview-grid{grid-template-columns:1fr;}
 }
 
 .preview-card{
@@ -142,10 +152,12 @@ background:#1e293b;
 padding:20px;
 border-radius:15px;
 transition:.3s;
-overflow:hidden;
 text-decoration:none;
 color:white;
-display:block;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+min-height:360px;
 }
 
 .preview-card:hover{
@@ -163,26 +175,7 @@ transition:.3s;
 }
 
 .preview-card:hover img{
-transform:scale(1.08);
-}
-
-.featured{
-border:2px solid #00f0ff;
-box-shadow:0 0 25px #00f0ff88;
-background:linear-gradient(145deg,#1e293b,#0f172a);
-}
-
-.featured:hover{
-box-shadow:0 0 40px #00f0ff;
-}
-
-.preview-card h3{
-margin-bottom:10px;
-}
-
-.preview-card p{
-color:#bbb;
-margin-bottom:15px;
+transform:scale(1.05);
 }
 
 .preview-card button{
@@ -198,6 +191,11 @@ transition:.3s;
 
 .preview-card button:hover{
 background:white;
+}
+
+.featured{
+border:2px solid #00f0ff;
+box-shadow:0 0 25px #00f0ff88;
 }
 
 .offer{
@@ -217,8 +215,82 @@ text-align:center;
 margin-top:40px;
 }
 
-@media(max-width:768px){
-.hero h1{font-size:35px;}
+/* CHAT BOT */
+#chatToggle{
+position:fixed;
+bottom:20px;
+left:20px;
+background:linear-gradient(45deg,#00f0ff,#00aaff);
+color:#000;
+font-weight:bold;
+padding:15px 20px;
+border-radius:50px;
+cursor:pointer;
+box-shadow:0 0 20px #00f0ff;
+z-index:999;
+}
+
+#chatBox{
+position:fixed;
+bottom:90px;
+left:20px;
+width:320px;
+background:#0f172a;
+border-radius:15px;
+box-shadow:0 0 30px #00f0ff55;
+display:none;
+flex-direction:column;
+overflow:hidden;
+z-index:999;
+}
+
+.chat-header{
+background:#00f0ff;
+color:black;
+padding:10px;
+font-weight:bold;
+text-align:center;
+}
+
+.chat-body{
+height:250px;
+overflow-y:auto;
+padding:10px;
+font-size:14px;
+}
+
+.bot{
+background:#1e293b;
+padding:8px;
+border-radius:10px;
+margin-bottom:8px;
+}
+
+.user{
+background:#00f0ff;
+color:black;
+padding:8px;
+border-radius:10px;
+margin-bottom:8px;
+text-align:right;
+}
+
+.chat-input{
+display:flex;
+}
+
+.chat-input input{
+flex:1;
+padding:8px;
+border:none;
+outline:none;
+}
+
+.chat-input button{
+background:#00f0ff;
+border:none;
+padding:8px;
+cursor:pointer;
 }
 </style>
 </head>
@@ -283,21 +355,81 @@ margin-top:40px;
 <button>اكتشف الآن</button>
 </a>
 
-<a href="shop.html" class="preview-card">
+<a href="laptops.html" class="preview-card">
 <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=600&q=80">
 <h3>لابتوبات</h3>
-<a href="laptops.html" class="btn">عرض اللابتوبات</a></a>
+<button>عرض اللابتوبات</button>
+</a>
+
 </div>
 </section>
 
 <div class="offer">
-🔥 خصم 20% لفترة محدودة على جميع منتجات المتجر 🔥
+🔥 خصم 20% لفترة محدودة 🔥
 </div>
 
 <footer>
 <p>© 2026 Mix Zone Store</p>
 <p>Ahmed Waleed</p>
 </footer>
+
+<!-- CHAT -->
+<div id="chatToggle">Mix Zone</div>
+
+<div id="chatBox">
+<div class="chat-header">Mix Zone Assistant 🤖</div>
+<div class="chat-body" id="chatBody">
+<div class="bot">أهلاً بيك 👋 تحب تشوف موبايلات ولا لابتوبات؟</div>
+</div>
+<div class="chat-input">
+<input type="text" id="userInput" placeholder="اكتب رسالتك...">
+<button onclick="sendMessage()">إرسال</button>
+</div>
+</div>
+
+<script>
+document.getElementById("chatToggle").onclick=function(){
+let box=document.getElementById("chatBox");
+box.style.display=box.style.display==="flex"?"none":"flex";
+}
+
+function sendMessage(){
+let input=document.getElementById("userInput");
+let msg=input.value.trim();
+if(msg==="") return;
+
+let body=document.getElementById("chatBody");
+body.innerHTML+=`<div class="user">${msg}</div>`;
+
+let reply="";
+let m=msg.toLowerCase();
+
+if(m.includes("اهلا")||m.includes("مرحبا")){
+reply="أهلاً وسهلاً 👋 عايز موبايلات ولا لابتوبات؟";
+}
+else if(m.includes("موبايل")){
+reply="هحولك لصفحة الموبايلات 🔥";
+setTimeout(()=>location.href="mobiles.html",1500);
+}
+else if(m.includes("لابتوب")){
+reply="هحولك لصفحة اللابتوبات 💻";
+setTimeout(()=>location.href="laptops.html",1500);
+}
+else if(m.includes("رقم")||m.includes("تواصل")){
+reply="لأي استفسار تواصل مع أحمد وليد 📞 015552998637";
+}
+else{
+reply="اكتب موبايل أو لابتوب أو رقم للتواصل 👌";
+}
+
+setTimeout(()=>{
+body.innerHTML+=`<div class="bot">${reply}</div>`;
+body.scrollTop=body.scrollHeight;
+},800);
+
+input.value="";
+}
+</script>
 
 </body>
 </html>
