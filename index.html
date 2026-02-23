@@ -3,220 +3,57 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIX ZONE | Mobile & Tech</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<title>Mix Zone | الرئيسية</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Orbitron', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 
 body{
-background:#050b18;
+background:linear-gradient(135deg,#0f172a,#1e293b);
 color:white;
+text-align:center;
 }
 
-/* NAVBAR */
 nav{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:#0d1326;
-position:sticky;
-top:0;
-z-index:1000;
-border-bottom:1px solid #00eaff33;
-}
-
-nav h2{
-color:#00eaff;
-text-shadow:0 0 10px #00eaff;
+background:#020617;
+padding:15px;
 }
 
 nav a{
-color:white;
+color:#00eaff;
+margin:15px;
 text-decoration:none;
-margin-left:20px;
-transition:0.3s;
+font-weight:bold;
 }
 
-nav a:hover{
-color:#ff6a00;
-}
-
-/* HERO */
 .hero{
-height:90vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-background:radial-gradient(circle at center,#0f1a3a 0%,#050b18 60%);
+padding:100px 20px;
 }
 
 .hero h1{
-font-size:60px;
+font-size:40px;
 color:#00eaff;
-text-shadow:0 0 20px #00eaff;
-}
-
-.hero span{
-color:#ff6a00;
-text-shadow:0 0 15px #ff6a00;
+margin-bottom:20px;
 }
 
 .hero p{
-margin-top:20px;
 font-size:18px;
-opacity:0.8;
+margin-bottom:30px;
 }
 
-.hero-buttons{
-margin-top:30px;
-}
-
-.btn{
+button{
 padding:12px 30px;
-border-radius:30px;
+background:#f97316;
 border:none;
+border-radius:25px;
 cursor:pointer;
+font-weight:bold;
 font-size:16px;
-margin:10px;
 transition:0.3s;
 }
 
-.primary{
+button:hover{
 background:#00eaff;
-color:black;
-box-shadow:0 0 15px #00eaff;
-}
-
-.primary:hover{
-transform:scale(1.1);
-}
-
-.secondary{
-background:#ff6a00;
-color:white;
-box-shadow:0 0 15px #ff6a00;
-}
-
-.secondary:hover{
-transform:scale(1.1);
-}
-
-/* CATEGORIES */
-.categories{
-padding:80px 8%;
-text-align:center;
-}
-
-.categories h2{
-margin-bottom:40px;
-color:#00eaff;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:30px;
-}
-
-.card{
-background:#0f1a3a;
-padding:30px;
-border-radius:15px;
-transition:0.4s;
-border:1px solid #00eaff33;
-}
-
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 25px #00eaff;
-}
-
-.card h3{
-margin-top:15px;
-}
-
-/* FOOTER */
-footer{
-text-align:center;
-padding:20px;
-background:#0d1326;
-margin-top:50px;
-font-size:14px;
-opacity:0.6;
-}
-
-/* CHAT BUTTON */
-.chat-btn{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#ff6a00;
-width:60px;
-height:60px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:25px;
-cursor:pointer;
-box-shadow:0 0 20px #ff6a00;
-}
-
-.chat-box{
-position:fixed;
-bottom:90px;
-right:20px;
-width:280px;
-background:#0f1a3a;
-border-radius:15px;
-display:none;
-flex-direction:column;
-overflow:hidden;
-border:1px solid #00eaff44;
-}
-
-.chat-header{
-background:#00eaff;
-color:black;
-padding:10px;
-font-weight:bold;
-text-align:center;
-}
-
-.chat-messages{
-height:200px;
-overflow-y:auto;
-padding:10px;
-font-size:14px;
-}
-
-.chat-input{
-display:flex;
-}
-
-.chat-input input{
-flex:1;
-padding:8px;
-border:none;
-outline:none;
-}
-
-.chat-input button{
-background:#ff6a00;
-border:none;
-color:white;
-padding:8px 12px;
-cursor:pointer;
 }
 </style>
 </head>
@@ -224,86 +61,16 @@ cursor:pointer;
 <body>
 
 <nav>
-<h2>MIX ZONE</h2>
-<div>
+<a href="index.html">الرئيسية</a>
 <a href="shop.html">المتجر</a>
-<a href="contact.html">تواصل معنا</a>
-<a href="https://www.facebook.com/mix.zone.22" target="_blank">فيسبوك</a>
-</div>
+<a href="checkout.html">إتمام الطلب</a>
 </nav>
 
-<section class="hero">
-<h1>MIX <span>ZONE</span></h1>
-<p>أحدث الموبايلات والإكسسوارات في مصر – شحن لجميع المحافظات – الدفع عند الاستلام</p>
-<div class="hero-buttons">
-<a href="shop.html"><button class="btn primary">تسوق الآن</button></a>
-<a href="https://www.facebook.com/mix.zone.22" target="_blank">
-<button class="btn secondary">صفحتنا على فيسبوك</button>
-</a>
+<div class="hero">
+<h1>مرحبًا بك في Mix Zone Store</h1>
+<p>أفضل عروض الإلكترونيات بأفضل الأسعار 🔥</p>
+<a href="shop.html"><button>ابدأ التسوق الآن</button></a>
 </div>
-</section>
-
-<section class="categories">
-<h2>أقسامنا</h2>
-<div class="grid">
-<div class="card"><h3>📱 هواتف</h3></div>
-<div class="card"><h3>🎧 AirPods</h3></div>
-<div class="card"><h3>⌚ ساعات سمارت</h3></div>
-<div class="card"><h3>💻 لابتوب</h3></div>
-<div class="card"><h3>⌨️ كيبورد RGB</h3></div>
-<div class="card"><h3>🖱 ماوس RGB</h3></div>
-</div>
-</section>
-
-<footer>
-© 2026 MIX ZONE - Mobile & Tech | المطرية - دقهلية | شحن لجميع المحافظات
-</footer>
-
-<!-- CHAT -->
-<div class="chat-btn" onclick="toggleChat()">💬</div>
-
-<div class="chat-box" id="chatBox">
-<div class="chat-header">MixZone Assistant 🤖</div>
-<div class="chat-messages" id="chatMessages"></div>
-<div class="chat-input">
-<input type="text" id="userInput" placeholder="اكتب سؤالك...">
-<button onclick="sendMessage()">إرسال</button>
-</div>
-</div>
-
-<script>
-function toggleChat(){
-const box=document.getElementById("chatBox");
-box.style.display=box.style.display==="flex"?"none":"flex";
-}
-
-function sendMessage(){
-const input=document.getElementById("userInput");
-const messages=document.getElementById("chatMessages");
-if(input.value.trim()==="") return;
-
-let userMsg=document.createElement("div");
-userMsg.innerHTML="<b>أنت:</b> "+input.value;
-messages.appendChild(userMsg);
-
-let reply=document.createElement("div");
-let text=input.value.toLowerCase();
-
-if(text.includes("سعر")){
-reply.innerHTML="<b>البوت:</b> الأسعار تختلف حسب المنتج 🔥 تواصل معنا عبر فيسبوك للتفاصيل.";
-}
-else if(text.includes("شحن")){
-reply.innerHTML="<b>البوت:</b> الشحن متاح لجميع المحافظات 🚚";
-}
-else{
-reply.innerHTML="<b>البوت:</b> أهلاً بيك في Mix Zone 👑 كيف أقدر أساعدك؟";
-}
-
-messages.appendChild(reply);
-input.value="";
-messages.scrollTop=messages.scrollHeight;
-}
-</script>
 
 </body>
 </html>
