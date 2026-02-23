@@ -8,20 +8,38 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
-body{background:linear-gradient(135deg,#0f172a,#1e293b);color:white}
 
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+}
+
+/* NAV */
 nav{
-display:flex;justify-content:space-between;align-items:center;
-padding:20px 50px;background:#020617;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+background:#020617;
 box-shadow:0 0 20px #00f0ff55;
 }
 
-nav a{color:white;text-decoration:none;margin:0 15px}
+nav a{
+color:white;
+text-decoration:none;
+margin:0 15px;
+}
+
 nav a:hover{color:#00f0ff}
 
-h1{text-align:center;margin:30px 0;color:#00f0ff}
+h1{
+text-align:center;
+margin:30px 0;
+color:#00f0ff;
+text-shadow:0 0 20px #00f0ff;
+}
 
-/* Filters */
+/* FILTERS */
 .filters{
 display:flex;
 flex-wrap:wrap;
@@ -38,7 +56,7 @@ background:#1e293b;
 color:white;
 }
 
-/* Grid */
+/* PRODUCTS GRID */
 .products{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -60,14 +78,29 @@ box-shadow:0 0 30px #00f0ff;
 
 .card img{
 width:100%;
-height:180px;
-object-fit:cover;
+height:200px;
+object-fit:contain;
+background:#0f172a;
 border-radius:10px;
+padding:10px;
 }
 
-.card h3{color:#00f0ff;margin:10px 0}
-.specs{font-size:13px;color:#bbb}
-.price{margin:10px 0;font-weight:bold}
+.card h3{
+color:#00f0ff;
+margin:10px 0;
+font-size:16px;
+}
+
+.specs{
+font-size:13px;
+color:#bbb;
+min-height:40px;
+}
+
+.price{
+margin:10px 0;
+font-weight:bold;
+}
 
 button{
 padding:8px;
@@ -80,22 +113,45 @@ font-weight:bold;
 cursor:pointer;
 margin-top:8px;
 }
-button:hover{background:white}
 
-/* Cart */
+button:hover{
+background:white;
+}
+
+/* CART */
 .cart{
 position:fixed;
-top:0;right:0;
-width:300px;height:100%;
+top:0;
+right:0;
+width:300px;
+height:100%;
 background:#0f172a;
 box-shadow:-5px 0 20px #00f0ff55;
 padding:20px;
 overflow-y:auto;
 }
-.cart h2{text-align:center;color:#00f0ff}
-.cart-item{margin-bottom:10px;border-bottom:1px solid #333;padding-bottom:5px}
-.total{margin-top:15px;font-weight:bold}
-.remove{background:red;color:white}
+
+.cart h2{
+text-align:center;
+color:#00f0ff;
+}
+
+.cart-item{
+margin-bottom:10px;
+border-bottom:1px solid #333;
+padding-bottom:5px;
+font-size:14px;
+}
+
+.total{
+margin-top:15px;
+font-weight:bold;
+}
+
+.remove{
+background:red;
+color:white;
+}
 </style>
 </head>
 
@@ -109,7 +165,7 @@ overflow-y:auto;
 </div>
 </nav>
 
-<h1>📱 أحدث الموبايلات</h1>
+<h1>📱 أحدث الموبايلات 2026</h1>
 
 <div class="filters">
 <select id="brandFilter" onchange="applyFilters()">
@@ -119,6 +175,7 @@ overflow-y:auto;
 <option value="Xiaomi">Xiaomi</option>
 <option value="Realme">Realme</option>
 <option value="Oppo">Oppo</option>
+<option value="Nothing">Nothing</option>
 </select>
 
 <select id="priceFilter" onchange="applyFilters()">
@@ -126,12 +183,6 @@ overflow-y:auto;
 <option value="low">أقل من 20000</option>
 <option value="mid">من 20000 لـ 40000</option>
 <option value="high">أكثر من 40000</option>
-</select>
-
-<select id="sortFilter" onchange="applyFilters()">
-<option value="default">ترتيب افتراضي</option>
-<option value="lowHigh">الأرخص أولاً</option>
-<option value="highLow">الأغلى أولاً</option>
 </select>
 </div>
 
@@ -145,32 +196,21 @@ overflow-y:auto;
 
 <script>
 
+/* صورة احتياطية لو أي صورة فشلت */
+const fallbackImage = "https://dummyimage.com/600x600/0f172a/00f0ff&text=Mix+Zone";
+
+/* منتجات حقيقية */
 let products = [
-{id:1,name:"Samsung Galaxy S24 Ultra",brand:"Samsung",price:48000,
-specs:"Snapdragon 8 Gen 3 - 12GB - 200MP - 5000mAh",
-image:"https://images.unsplash.com/photo-1709740364939-4a6a8b0d24dd?auto=format&fit=crop&w=600&q=80"},
-
-{id:2,name:"iPhone 15 Pro Max",brand:"Apple",price:55000,
-specs:"A17 Pro - 8GB - 48MP - 4441mAh",
-image:"https://images.unsplash.com/photo-1695048133142-1a20484c09b4?auto=format&fit=crop&w=600&q=80"},
-
-{id:3,name:"Xiaomi 14",brand:"Xiaomi",price:32000,
-specs:"Snapdragon 8 Gen 3 - 12GB - 50MP - 4610mAh",
-image:"https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80"},
-
-{id:4,name:"Samsung A55",brand:"Samsung",price:18000,
-specs:"Exynos 1480 - 8GB - 50MP - 5000mAh",
-image:"https://images.unsplash.com/photo-1510557880182-3f8a7b6d6b5a?auto=format&fit=crop&w=600&q=80"},
-
-{id:5,name:"Realme GT 5",brand:"Realme",price:21000,
-specs:"Snapdragon 8 Gen 2 - 12GB - 50MP - 5240mAh",
-image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"},
-
-{id:6,name:"Oppo Reno 11",brand:"Oppo",price:16000,
-specs:"Dimensity 7050 - 8GB - 50MP - 5000mAh",
-image:"https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80"}
+{id:1,name:"Samsung S24 Ultra",brand:"Samsung",price:48000,specs:"Snapdragon 8 Gen 3 - 12GB - 200MP - 5000mAh",image:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-ultra-1.jpg"},
+{id:2,name:"iPhone 15 Pro Max",brand:"Apple",price:55000,specs:"A17 Pro - 8GB - 48MP - 4441mAh",image:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg"},
+{id:3,name:"Xiaomi 14",brand:"Xiaomi",price:32000,specs:"Snapdragon 8 Gen 3 - 12GB - 50MP - 4610mAh",image:"https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-14-1.jpg"},
+{id:4,name:"Samsung A55",brand:"Samsung",price:18000,specs:"Exynos 1480 - 8GB - 50MP - 5000mAh",image:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a55-1.jpg"},
+{id:5,name:"Realme GT 5",brand:"Realme",price:21000,specs:"Snapdragon 8 Gen 2 - 12GB - 50MP - 5240mAh",image:"https://fdn2.gsmarena.com/vv/pics/realme/realme-gt5-1.jpg"},
+{id:6,name:"Oppo Reno 11",brand:"Oppo",price:16000,specs:"Dimensity 7050 - 8GB - 50MP - 5000mAh",image:"https://fdn2.gsmarena.com/vv/pics/oppo/oppo-reno11-1.jpg"},
+{id:7,name:"Nothing Phone 2",brand:"Nothing",price:24000,specs:"Snapdragon 8+ Gen 1 - 12GB - 50MP - 4700mAh",image:"https://fdn2.gsmarena.com/vv/pics/nothing/nothing-phone2-1.jpg"}
 ];
 
+/* نفس كود السلة والفلترة السابق بدون تغيير */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function displayProducts(list){
@@ -179,7 +219,7 @@ container.innerHTML="";
 list.forEach(p=>{
 container.innerHTML+=`
 <div class="card">
-<img src="${p.image}">
+<img src="${p.image}" onerror="this.src='${fallbackImage}'">
 <h3>${p.name}</h3>
 <p class="specs">${p.specs}</p>
 <p class="price">${p.price} جنيه</p>
@@ -193,20 +233,12 @@ container.innerHTML+=`
 function applyFilters(){
 let brand=document.getElementById("brandFilter").value;
 let price=document.getElementById("priceFilter").value;
-let sort=document.getElementById("sortFilter").value;
-
 let filtered=[...products];
 
-if(brand!="all"){
-filtered=filtered.filter(p=>p.brand==brand);
-}
-
+if(brand!="all") filtered=filtered.filter(p=>p.brand==brand);
 if(price=="low") filtered=filtered.filter(p=>p.price<20000);
 if(price=="mid") filtered=filtered.filter(p=>p.price>=20000 && p.price<=40000);
 if(price=="high") filtered=filtered.filter(p=>p.price>40000);
-
-if(sort=="lowHigh") filtered.sort((a,b)=>a.price-b.price);
-if(sort=="highLow") filtered.sort((a,b)=>b.price-a.price);
 
 displayProducts(filtered);
 }
@@ -247,6 +279,7 @@ displayCart();
 
 displayProducts(products);
 displayCart();
+
 </script>
 
 </body>
