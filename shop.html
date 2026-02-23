@@ -4,134 +4,93 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mix Zone | Store</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Orbitron',sans-serif;
-}
-
-body{
-    background:#0a0f2c;
-    color:white;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif}
+body{background:#0a0f2c;color:white}
 
 nav{
-    background:#060b1f;
-    padding:20px;
-    position:relative;
-    text-align:center;
-    font-size:22px;
-    font-weight:bold;
-    letter-spacing:2px;
-    color:#00f0ff;
+background:#060b1f;
+padding:20px;
+position:relative;
+text-align:center;
+font-size:22px;
+font-weight:bold;
+letter-spacing:2px;
+color:#00f0ff;
 }
 
 .owner{
-    position:absolute;
-    left:20px;
-    top:20px;
-    font-size:16px;
-    color:#ff7b00;
+position:absolute;
+left:20px;
+top:20px;
+font-size:16px;
+color:#ff7b00;
 }
 
 .container{
-    padding:40px;
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+padding:40px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
 }
 
 .card{
-    background:#11183d;
-    border-radius:15px;
-    padding:20px;
-    text-align:center;
-    transition:0.4s;
+background:#11183d;
+border-radius:15px;
+padding:20px;
+text-align:center;
+transition:0.4s;
 }
 
 .card:hover{
-    transform:translateY(-10px);
-    box-shadow:0 0 25px #00f0ff;
+transform:translateY(-10px);
+box-shadow:0 0 25px #00f0ff;
 }
 
 .card img{
-    width:100%;
-    height:250px;
-    object-fit:contain;
-    background:#0a0f2c;
-    padding:10px;
-    border-radius:12px;
+width:100%;
+height:250px;
+object-fit:contain;
+background:#0a0f2c;
+padding:10px;
+border-radius:12px;
 }
 
-h3{
-    margin:15px 0;
-    color:#00f0ff;
-}
+h3{margin:15px 0;color:#00f0ff}
 
-.specs{
-    font-size:13px;
-    line-height:1.7;
-    margin-bottom:10px;
-    color:#ccc;
-}
+.specs{font-size:13px;line-height:1.7;margin-bottom:10px;color:#ccc}
 
-.price{
-    color:#ff7b00;
-    font-size:18px;
-    margin:10px 0;
-}
+.price{color:#ff7b00;font-size:18px;margin:10px 0}
 
 button{
-    background:#00f0ff;
-    border:none;
-    padding:10px 20px;
-    border-radius:20px;
-    cursor:pointer;
-    transition:0.3s;
+background:#00f0ff;
+border:none;
+padding:10px 20px;
+border-radius:20px;
+cursor:pointer;
+transition:0.3s;
 }
 
 button:hover{
-    background:#ff7b00;
-    transform:scale(1.1);
+background:#ff7b00;
+transform:scale(1.1);
 }
 
 .chat-button{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:#ff7b00;
-    width:60px;
-    height:60px;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:25px;
-    cursor:pointer;
-}
-
-.chat-box{
-    display:none;
-    position:fixed;
-    bottom:90px;
-    right:20px;
-    width:250px;
-    background:#11183d;
-    padding:15px;
-    border-radius:10px;
-}
-
-.chat-box input{
-    width:100%;
-    padding:8px;
-    margin-top:10px;
-    border:none;
-    border-radius:5px;
+position:fixed;
+bottom:20px;
+right:20px;
+background:#ff7b00;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:25px;
+cursor:pointer;
 }
 </style>
 </head>
@@ -147,7 +106,7 @@ Mix Zone Store
 
 <!-- Mobile -->
 <div class="card">
-<img src="galaxy-a06.png">
+<img src="https://i.postimg.cc/D0V2LQqg/galaxy-a06.png">
 <h3>Samsung Galaxy A06</h3>
 <div class="specs">
 شاشة 6.7 بوصة<br>
@@ -162,7 +121,7 @@ RAM 4GB<br>
 
 <!-- Laptop -->
 <div class="card">
-<img src="hp-probook-450.png">
+<img src="https://i.postimg.cc/SsWzY4xV/hp-probook.png">
 <h3>HP ProBook 450</h3>
 <div class="specs">
 Intel Core i5<br>
@@ -177,7 +136,7 @@ Intel Core i5<br>
 
 <!-- AirPods -->
 <div class="card">
-<img src="airpods-3.jpg">
+<img src="https://i.postimg.cc/W4cHjM9X/airpods3.jpg">
 <h3>AirPods 3</h3>
 <div class="specs">
 Spatial Audio<br>
@@ -191,7 +150,7 @@ Bluetooth سريع<br>
 
 <!-- Watch -->
 <div class="card">
-<img src="x8-ultra-plus.jpg">
+<img src="https://i.postimg.cc/6pXbN8mL/x8watch.jpg">
 <h3>X8 Ultra Plus</h3>
 <div class="specs">
 مكالمات بلوتوث<br>
@@ -205,7 +164,7 @@ Bluetooth سريع<br>
 
 <!-- Keyboard -->
 <div class="card">
-<img src="keyboard-rgb.png">
+<img src="https://i.postimg.cc/8zQZk7cJ/keyboard-rgb.png">
 <h3>RGB Gaming Keyboard</h3>
 <div class="specs">
 إضاءة RGB<br>
@@ -219,7 +178,7 @@ USB سريع<br>
 
 <!-- Mouse -->
 <div class="card">
-<img src="mouse-rgb.jpg">
+<img src="https://i.postimg.cc/wj5sRZ5P/mouse-rgb.jpg">
 <h3>RGB Gaming Mouse</h3>
 <div class="specs">
 DPI 7200<br>
@@ -233,24 +192,12 @@ DPI 7200<br>
 
 </div>
 
-<div class="chat-button" onclick="toggleChat()">💬</div>
-
-<div class="chat-box" id="chatBox">
-<p>أهلاً 👋 تحب تسأل عن إيه؟</p>
-<input type="text" placeholder="اكتب هنا...">
-</div>
-
 <script>
 function order(product){
-    let phone = "2010XXXXXXXX"; // حط رقمك هنا
-    let message = "عايز أطلب " + product + " من Mix Zone";
-    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
-    window.open(url, "_blank");
-}
-
-function toggleChat(){
-    let box=document.getElementById("chatBox");
-    box.style.display = box.style.display==="block"?"none":"block";
+let phone="2010XXXXXXXX"; 
+let message="عايز أطلب "+product+" من Mix Zone";
+let url="https://wa.me/"+phone+"?text="+encodeURIComponent(message);
+window.open(url,"_blank");
 }
 </script>
 
