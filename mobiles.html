@@ -1,207 +1,286 @@
-let products = [
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobiles | Mix Zone</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
-/* ================= SAMSUNG ================= */
-{
-id:1,
-name:"Samsung Galaxy S24 Ultra",
-brand:"Samsung",
-price:48000,
-specs:"Snapdragon 8 Gen 3 - 12GB RAM - 256GB - 200MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-ultra-1.jpg"
-},
-{
-id:2,
-name:"Samsung Galaxy S24",
-brand:"Samsung",
-price:38000,
-specs:"Exynos 2400 - 8GB RAM - 256GB - 50MP - 4000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-1.jpg"
-},
-{
-id:3,
-name:"Samsung Galaxy A55",
-brand:"Samsung",
-price:18000,
-specs:"Exynos 1480 - 8GB RAM - 256GB - 50MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a55-1.jpg"
-},
-{
-id:4,
-name:"Samsung Galaxy A15",
-brand:"Samsung",
-price:9000,
-specs:"Helio G99 - 6GB RAM - 128GB - 50MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a15-1.jpg"
-},
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
 
-/* ================= APPLE ================= */
-{
-id:5,
-name:"iPhone 15 Pro Max",
-brand:"Apple",
-price:55000,
-specs:"A17 Pro - 8GB RAM - 256GB - 48MP - 4441mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg"
-},
-{
-id:6,
-name:"iPhone 15",
-brand:"Apple",
-price:42000,
-specs:"A16 Bionic - 6GB RAM - 128GB - 48MP - 3349mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-1.jpg"
-},
-{
-id:7,
-name:"iPhone 14",
-brand:"Apple",
-price:35000,
-specs:"A15 Bionic - 6GB RAM - 128GB - 12MP - 3279mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-14-1.jpg"
-},
-{
-id:8,
-name:"iPhone 13",
-brand:"Apple",
-price:30000,
-specs:"A15 Bionic - 4GB RAM - 128GB - 12MP - 3240mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-13-01.jpg"
-},
-
-/* ================= XIAOMI ================= */
-{
-id:9,
-name:"Xiaomi 14",
-brand:"Xiaomi",
-price:32000,
-specs:"Snapdragon 8 Gen 3 - 12GB - 512GB - 50MP - 4610mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-14-1.jpg"
-},
-{
-id:10,
-name:"Xiaomi 13T Pro",
-brand:"Xiaomi",
-price:27000,
-specs:"Dimensity 9200+ - 12GB - 512GB - 50MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-13t-pro-1.jpg"
-},
-{
-id:11,
-name:"Redmi Note 13 Pro+",
-brand:"Xiaomi",
-price:17000,
-specs:"Dimensity 7200 - 8GB - 256GB - 200MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-note-13-pro-plus-1.jpg"
-},
-{
-id:12,
-name:"Redmi 13C",
-brand:"Xiaomi",
-price:9000,
-specs:"Helio G85 - 6GB - 128GB - 50MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-redmi-13c-1.jpg"
-},
-
-/* ================= REALME ================= */
-{
-id:13,
-name:"Realme GT 5",
-brand:"Realme",
-price:21000,
-specs:"Snapdragon 8 Gen 2 - 12GB - 256GB - 50MP - 5240mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/realme/realme-gt5-1.jpg"
-},
-{
-id:14,
-name:"Realme 11 Pro+",
-brand:"Realme",
-price:16000,
-specs:"Dimensity 7050 - 8GB - 256GB - 200MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/realme/realme-11-pro-plus-1.jpg"
-},
-{
-id:15,
-name:"Realme C55",
-brand:"Realme",
-price:8000,
-specs:"Helio G88 - 8GB - 128GB - 64MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/realme/realme-c55-1.jpg"
-},
-{
-id:16,
-name:"Realme Narzo 60",
-brand:"Realme",
-price:10000,
-specs:"Dimensity 6020 - 8GB - 128GB - 64MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/realme/realme-narzo-60-1.jpg"
-},
-
-/* ================= OPPO ================= */
-{
-id:17,
-name:"Oppo Reno 11 Pro",
-brand:"Oppo",
-price:22000,
-specs:"Dimensity 8200 - 12GB - 256GB - 50MP - 4600mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/oppo/oppo-reno11-pro-1.jpg"
-},
-{
-id:18,
-name:"Oppo Reno 11",
-brand:"Oppo",
-price:16000,
-specs:"Dimensity 7050 - 8GB - 256GB - 50MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/oppo/oppo-reno11-1.jpg"
-},
-{
-id:19,
-name:"Oppo A78",
-brand:"Oppo",
-price:11000,
-specs:"Snapdragon 680 - 8GB - 128GB - 50MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/oppo/oppo-a78-4g-1.jpg"
-},
-{
-id:20,
-name:"Oppo A58",
-brand:"Oppo",
-price:9000,
-specs:"Helio G85 - 6GB - 128GB - 50MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/oppo/oppo-a58-4g-1.jpg"
-},
-
-/* ================= NOTHING ================= */
-{
-id:21,
-name:"Nothing Phone 2",
-brand:"Nothing",
-price:24000,
-specs:"Snapdragon 8+ Gen 1 - 12GB - 256GB - 50MP - 4700mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/nothing/nothing-phone2-1.jpg"
-},
-{
-id:22,
-name:"Nothing Phone 2a",
-brand:"Nothing",
-price:17000,
-specs:"Dimensity 7200 Pro - 8GB - 256GB - 50MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/nothing/nothing-phone-2a-1.jpg"
-},
-{
-id:23,
-name:"Nothing Phone 1",
-brand:"Nothing",
-price:19000,
-specs:"Snapdragon 778G+ - 8GB - 256GB - 50MP - 4500mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/nothing/nothing-phone-1-1.jpg"
-},
-{
-id:24,
-name:"Nothing CMF Phone 1",
-brand:"Nothing",
-price:14000,
-specs:"Dimensity 7300 - 8GB - 256GB - 50MP - 5000mAh",
-image:"https://fdn2.gsmarena.com/vv/pics/nothing/cmf-phone-1-1.jpg"
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
 }
 
+/* NAV */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+background:#020617;
+box-shadow:0 0 20px #00f0ff55;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 15px;
+}
+
+nav a:hover{color:#00f0ff}
+
+h1{
+text-align:center;
+margin:30px 0;
+color:#00f0ff;
+text-shadow:0 0 20px #00f0ff;
+}
+
+/* FILTERS */
+.filters{
+display:flex;
+flex-wrap:wrap;
+gap:15px;
+justify-content:center;
+margin-bottom:30px;
+}
+
+select{
+padding:10px;
+border-radius:10px;
+border:none;
+background:#1e293b;
+color:white;
+}
+
+/* PRODUCTS GRID */
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
+padding:40px;
+}
+
+.card{
+background:#1e293b;
+border-radius:15px;
+padding:15px;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 30px #00f0ff;
+}
+
+.card img{
+width:100%;
+height:200px;
+object-fit:contain;
+background:#0f172a;
+border-radius:10px;
+padding:10px;
+}
+
+.card h3{
+color:#00f0ff;
+margin:10px 0;
+font-size:16px;
+}
+
+.specs{
+font-size:13px;
+color:#bbb;
+min-height:40px;
+}
+
+.price{
+margin:10px 0;
+font-weight:bold;
+}
+
+button{
+padding:8px;
+width:100%;
+border:none;
+border-radius:20px;
+background:#00f0ff;
+color:black;
+font-weight:bold;
+cursor:pointer;
+margin-top:8px;
+}
+
+button:hover{
+background:white;
+}
+
+/* CART */
+.cart{
+position:fixed;
+top:0;
+right:0;
+width:300px;
+height:100%;
+background:#0f172a;
+box-shadow:-5px 0 20px #00f0ff55;
+padding:20px;
+overflow-y:auto;
+}
+
+.cart h2{
+text-align:center;
+color:#00f0ff;
+}
+
+.cart-item{
+margin-bottom:10px;
+border-bottom:1px solid #333;
+padding-bottom:5px;
+font-size:14px;
+}
+
+.total{
+margin-top:15px;
+font-weight:bold;
+}
+
+.remove{
+background:red;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div style="color:#00f0ff;font-weight:bold;">Mix Zone</div>
+<div>
+<a href="index.html">الرئيسية</a>
+<a href="gaming.html">Gaming</a>
+</div>
+</nav>
+
+<h1>📱 أحدث الموبايلات 2026</h1>
+
+<div class="filters">
+<select id="brandFilter" onchange="applyFilters()">
+<option value="all">كل الشركات</option>
+<option value="Samsung">Samsung</option>
+<option value="Apple">Apple</option>
+<option value="Xiaomi">Xiaomi</option>
+<option value="Realme">Realme</option>
+<option value="Oppo">Oppo</option>
+<option value="Nothing">Nothing</option>
+</select>
+
+<select id="priceFilter" onchange="applyFilters()">
+<option value="all">كل الأسعار</option>
+<option value="low">أقل من 20000</option>
+<option value="mid">من 20000 لـ 40000</option>
+<option value="high">أكثر من 40000</option>
+</select>
+</div>
+
+<div class="products" id="products"></div>
+
+<div class="cart">
+<h2>🛒 السلة</h2>
+<div id="cartItems"></div>
+<div class="total" id="totalPrice">الإجمالي: 0 جنيه</div>
+</div>
+
+<script>
+
+/* صورة احتياطية لو أي صورة فشلت */
+const fallbackImage = "https://dummyimage.com/600x600/0f172a/00f0ff&text=Mix+Zone";
+
+/* منتجات حقيقية */
+let products = [
+{id:1,name:"Samsung S24 Ultra",brand:"Samsung",price:48000,specs:"Snapdragon 8 Gen 3 - 12GB - 200MP - 5000mAh",image:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-s24-ultra-1.jpg"},
+{id:2,name:"iPhone 15 Pro Max",brand:"Apple",price:55000,specs:"A17 Pro - 8GB - 48MP - 4441mAh",image:"https://fdn2.gsmarena.com/vv/pics/apple/apple-iphone-15-pro-max-1.jpg"},
+{id:3,name:"Xiaomi 14",brand:"Xiaomi",price:32000,specs:"Snapdragon 8 Gen 3 - 12GB - 50MP - 4610mAh",image:"https://fdn2.gsmarena.com/vv/pics/xiaomi/xiaomi-14-1.jpg"},
+{id:4,name:"Samsung A55",brand:"Samsung",price:18000,specs:"Exynos 1480 - 8GB - 50MP - 5000mAh",image:"https://fdn2.gsmarena.com/vv/pics/samsung/samsung-galaxy-a55-1.jpg"},
+{id:5,name:"Realme GT 5",brand:"Realme",price:21000,specs:"Snapdragon 8 Gen 2 - 12GB - 50MP - 5240mAh",image:"https://fdn2.gsmarena.com/vv/pics/realme/realme-gt5-1.jpg"},
+{id:6,name:"Oppo Reno 11",brand:"Oppo",price:16000,specs:"Dimensity 7050 - 8GB - 50MP - 5000mAh",image:"https://fdn2.gsmarena.com/vv/pics/oppo/oppo-reno11-1.jpg"},
+{id:7,name:"Nothing Phone 2",brand:"Nothing",price:24000,specs:"Snapdragon 8+ Gen 1 - 12GB - 50MP - 4700mAh",image:"https://fdn2.gsmarena.com/vv/pics/nothing/nothing-phone2-1.jpg"}
 ];
+
+/* نفس كود السلة والفلترة السابق بدون تغيير */
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function displayProducts(list){
+let container=document.getElementById("products");
+container.innerHTML="";
+list.forEach(p=>{
+container.innerHTML+=`
+<div class="card">
+<img src="${p.image}" onerror="this.src='${fallbackImage}'">
+<h3>${p.name}</h3>
+<p class="specs">${p.specs}</p>
+<p class="price">${p.price} جنيه</p>
+<button onclick="viewDetails(${p.id})">عرض التفاصيل</button>
+<button onclick="addToCart(${p.id})">إضافة للسلة</button>
+</div>
+`;
+});
+}
+
+function applyFilters(){
+let brand=document.getElementById("brandFilter").value;
+let price=document.getElementById("priceFilter").value;
+let filtered=[...products];
+
+if(brand!="all") filtered=filtered.filter(p=>p.brand==brand);
+if(price=="low") filtered=filtered.filter(p=>p.price<20000);
+if(price=="mid") filtered=filtered.filter(p=>p.price>=20000 && p.price<=40000);
+if(price=="high") filtered=filtered.filter(p=>p.price>40000);
+
+displayProducts(filtered);
+}
+
+function viewDetails(id){
+localStorage.setItem("selectedProduct",JSON.stringify(products.find(p=>p.id==id)));
+window.location.href="product-details.html";
+}
+
+function addToCart(id){
+let product=products.find(p=>p.id==id);
+cart.push(product);
+localStorage.setItem("cart",JSON.stringify(cart));
+displayCart();
+}
+
+function displayCart(){
+let box=document.getElementById("cartItems");
+box.innerHTML="";
+let total=0;
+cart.forEach((item,i)=>{
+total+=item.price;
+box.innerHTML+=`
+<div class="cart-item">
+<p>${item.name}</p>
+<p>${item.price} جنيه</p>
+<button class="remove" onclick="removeItem(${i})">حذف</button>
+</div>`;
+});
+document.getElementById("totalPrice").innerText="الإجمالي: "+total+" جنيه";
+}
+
+function removeItem(i){
+cart.splice(i,1);
+localStorage.setItem("cart",JSON.stringify(cart));
+displayCart();
+}
+
+displayProducts(products);
+displayCart();
+
+</script>
+
+</body>
+</html>
