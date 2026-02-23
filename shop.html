@@ -3,196 +3,254 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MIX ZONE | Store</title>
+<title>Mix Zone | Store</title>
+
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
-body{background:#050b18;color:white;}
-nav{display:flex;justify-content:space-between;align-items:center;padding:20px 8%;background:#0d1326;border-bottom:1px solid #00eaff33;}
-nav h2{color:#00eaff;text-shadow:0 0 10px #00eaff;}
-nav a{color:white;text-decoration:none;margin-left:20px;}
-.container{padding:60px 8%;}
-h1{text-align:center;margin-bottom:50px;color:#00eaff;}
-
-.product{
-display:flex;
-flex-wrap:wrap;
-background:#0f1a3a;
-margin-bottom:40px;
-border-radius:15px;
-overflow:hidden;
-border:1px solid #00eaff33;
-transition:0.3s;
-}
-.product:hover{box-shadow:0 0 25px #00eaff;}
-
-.product img{
-width:300px;
-height:300px;
-object-fit:cover;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Orbitron',sans-serif;
 }
 
-.product-info{
-flex:1;
-padding:25px;
+body{
+    background:#0a0f2c;
+    color:white;
 }
 
-.product-info h3{
-margin-bottom:15px;
-color:#ff6a00;
+nav{
+    background:#060b1f;
+    padding:20px;
+    position:relative;
+    text-align:center;
+    font-size:22px;
+    font-weight:bold;
+    letter-spacing:2px;
+    color:#00f0ff;
+}
+
+.owner{
+    position:absolute;
+    left:20px;
+    top:20px;
+    font-size:16px;
+    color:#ff7b00;
+}
+
+.container{
+    padding:40px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:#11183d;
+    border-radius:15px;
+    padding:20px;
+    text-align:center;
+    transition:0.4s;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    box-shadow:0 0 25px #00f0ff;
+}
+
+.card img{
+    width:100%;
+    height:250px;
+    object-fit:contain;
+    background:#0a0f2c;
+    padding:10px;
+    border-radius:12px;
+}
+
+h3{
+    margin:15px 0;
+    color:#00f0ff;
 }
 
 .specs{
-font-size:14px;
-line-height:1.8;
-opacity:0.9;
-margin-bottom:15px;
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:10px;
+    color:#ccc;
 }
 
 .price{
-font-size:18px;
-color:#00eaff;
-margin-bottom:15px;
+    color:#ff7b00;
+    font-size:18px;
+    margin:10px 0;
 }
 
 button{
-background:#ff6a00;
-border:none;
-padding:10px 25px;
-border-radius:20px;
-cursor:pointer;
-font-weight:bold;
+    background:#00f0ff;
+    border:none;
+    padding:10px 20px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:0.3s;
 }
 
-button:hover{transform:scale(1.05);}
+button:hover{
+    background:#ff7b00;
+    transform:scale(1.1);
+}
 
-footer{text-align:center;padding:20px;background:#0d1326;margin-top:40px;opacity:0.6;}
+.chat-button{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    background:#ff7b00;
+    width:60px;
+    height:60px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+    cursor:pointer;
+}
+
+.chat-box{
+    display:none;
+    position:fixed;
+    bottom:90px;
+    right:20px;
+    width:250px;
+    background:#11183d;
+    padding:15px;
+    border-radius:10px;
+}
+
+.chat-box input{
+    width:100%;
+    padding:8px;
+    margin-top:10px;
+    border:none;
+    border-radius:5px;
+}
 </style>
 </head>
 
 <body>
 
 <nav>
-<h2>MIX ZONE</h2>
-<div>
-<a href="index.html">الرئيسية</a>
-<a href="https://www.facebook.com/mix.zone.22" target="_blank">فيسبوك</a>
-</div>
+Mix Zone Store
+<div class="owner">Ahmed Waleed</div>
 </nav>
 
 <div class="container">
-<h1>منتجاتنا 🔥</h1>
 
-<!-- iPhone -->
-<div class="product">
-<img src="https://images.unsplash.com/photo-1632661674596-df8be070a5c5" alt="">
-<div class="product-info">
-<h3>iPhone 13 - 128GB</h3>
+<!-- Mobile -->
+<div class="card">
+<img src="galaxy-a06.png">
+<h3>Samsung Galaxy A06</h3>
 <div class="specs">
-• شاشة 6.1 بوصة Super Retina XDR<br>
-• معالج A15 Bionic<br>
-• كاميرا مزدوجة 12MP<br>
-• بطارية تدوم طوال اليوم<br>
-• يدعم 5G
+شاشة 6.7 بوصة<br>
+RAM 4GB<br>
+128GB Storage<br>
+كاميرا 50MP<br>
+بطارية 5000mAh
 </div>
-<div class="price">25,000 جنيه</div>
-<button onclick="order()">اطلب الآن</button>
-</div>
-</div>
-
-<!-- AirPods -->
-<div class="product">
-<img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad" alt="">
-<div class="product-info">
-<h3>AirPods Pro</h3>
-<div class="specs">
-• عزل ضوضاء نشط<br>
-• صوت عالي الجودة<br>
-• مقاومة للماء<br>
-• بطارية حتى 24 ساعة<br>
-• شحن لاسلكي
-</div>
-<div class="price">1,200 جنيه</div>
-<button onclick="order()">اطلب الآن</button>
-</div>
-</div>
-
-<!-- Smart Watch -->
-<div class="product">
-<img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b" alt="">
-<div class="product-info">
-<h3>Smart Watch Series 8</h3>
-<div class="specs">
-• شاشة AMOLED<br>
-• قياس نبضات القلب<br>
-• قياس نسبة الأكسجين<br>
-• تتبع رياضي<br>
-• إشعارات مكالمات ورسائل
-</div>
-<div class="price">950 جنيه</div>
-<button onclick="order()">اطلب الآن</button>
-</div>
+<div class="price">5,500 جنيه</div>
+<button onclick="order('Galaxy A06')">اطلب الآن</button>
 </div>
 
 <!-- Laptop -->
-<div class="product">
-<img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="">
-<div class="product-info">
-<h3>HP Laptop i5</h3>
+<div class="card">
+<img src="hp-probook-450.png">
+<h3>HP ProBook 450</h3>
 <div class="specs">
-• معالج Intel Core i5<br>
-• رام 8GB<br>
-• SSD 512GB<br>
-• شاشة 15.6 بوصة Full HD<br>
-• كارت شاشة Intel UHD
+Intel Core i5<br>
+8GB RAM<br>
+256GB SSD<br>
+15.6 FHD<br>
+بطارية قوية
 </div>
 <div class="price">18,000 جنيه</div>
-<button onclick="order()">اطلب الآن</button>
+<button onclick="order('HP ProBook 450')">اطلب الآن</button>
 </div>
+
+<!-- AirPods -->
+<div class="card">
+<img src="airpods-3.jpg">
+<h3>AirPods 3</h3>
+<div class="specs">
+Spatial Audio<br>
+6 ساعات تشغيل<br>
+Bluetooth سريع<br>
+شحن MagSafe
+</div>
+<div class="price">1,200 جنيه</div>
+<button onclick="order('AirPods 3')">اطلب الآن</button>
+</div>
+
+<!-- Watch -->
+<div class="card">
+<img src="x8-ultra-plus.jpg">
+<h3>X8 Ultra Plus</h3>
+<div class="specs">
+مكالمات بلوتوث<br>
+قياس نبضات القلب<br>
+أوضاع رياضية<br>
+بطارية 3 أيام
+</div>
+<div class="price">950 جنيه</div>
+<button onclick="order('X8 Ultra Plus')">اطلب الآن</button>
 </div>
 
 <!-- Keyboard -->
-<div class="product">
-<img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7" alt="">
-<div class="product-info">
+<div class="card">
+<img src="keyboard-rgb.png">
 <h3>RGB Gaming Keyboard</h3>
 <div class="specs">
-• إضاءة RGB متعددة الألوان<br>
-• مفاتيح ميكانيكال<br>
-• مضاد للماء<br>
-• تصميم Gaming احترافي
+إضاءة RGB<br>
+Anti-Ghosting<br>
+USB سريع<br>
+مناسب للألعاب
 </div>
 <div class="price">750 جنيه</div>
-<button onclick="order()">اطلب الآن</button>
-</div>
+<button onclick="order('RGB Keyboard')">اطلب الآن</button>
 </div>
 
 <!-- Mouse -->
-<div class="product">
-<img src="https://images.unsplash.com/photo-1613145997970-db84a7975fbb" alt="">
-<div class="product-info">
+<div class="card">
+<img src="mouse-rgb.jpg">
 <h3>RGB Gaming Mouse</h3>
 <div class="specs">
-• DPI حتى 7200<br>
-• إضاءة RGB<br>
-• 6 أزرار تحكم<br>
-• مناسب للألعاب
+DPI 7200<br>
+إضاءة RGB<br>
+6 أزرار<br>
+دقة عالية
 </div>
 <div class="price">450 جنيه</div>
-<button onclick="order()">اطلب الآن</button>
-</div>
-</div>
-
+<button onclick="order('RGB Mouse')">اطلب الآن</button>
 </div>
 
-<footer>
-© 2026 MIX ZONE - المطرية - دقهلية | شحن لجميع المحافظات | الدفع عند الاستلام
-</footer>
+</div>
+
+<div class="chat-button" onclick="toggleChat()">💬</div>
+
+<div class="chat-box" id="chatBox">
+<p>أهلاً 👋 تحب تسأل عن إيه؟</p>
+<input type="text" placeholder="اكتب هنا...">
+</div>
 
 <script>
-function order(){
-window.open("https://www.facebook.com/mix.zone.22","_blank");
+function order(product){
+    let phone = "2010XXXXXXXX"; // حط رقمك هنا
+    let message = "عايز أطلب " + product + " من Mix Zone";
+    let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(message);
+    window.open(url, "_blank");
+}
+
+function toggleChat(){
+    let box=document.getElementById("chatBox");
+    box.style.display = box.style.display==="block"?"none":"block";
 }
 </script>
 
