@@ -7,102 +7,67 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Orbitron', sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Orbitron',sans-serif;}
+body{background:#050b18;color:white;}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 8%;background:#0d1326;border-bottom:1px solid #00eaff33;}
+nav h2{color:#00eaff;text-shadow:0 0 10px #00eaff;}
+nav a{color:white;text-decoration:none;margin-left:20px;}
+.container{padding:60px 8%;}
+h1{text-align:center;margin-bottom:50px;color:#00eaff;}
 
-body{
-background:#050b18;
-color:white;
-}
-
-nav{
+.product{
 display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 8%;
-background:#0d1326;
-border-bottom:1px solid #00eaff33;
-}
-
-nav h2{
-color:#00eaff;
-text-shadow:0 0 10px #00eaff;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-}
-
-.container{
-padding:60px 8%;
-}
-
-h1{
-text-align:center;
-margin-bottom:40px;
-color:#00eaff;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:30px;
-}
-
-.card{
+flex-wrap:wrap;
 background:#0f1a3a;
-padding:20px;
+margin-bottom:40px;
 border-radius:15px;
-text-align:center;
-transition:0.4s;
+overflow:hidden;
 border:1px solid #00eaff33;
+transition:0.3s;
 }
+.product:hover{box-shadow:0 0 25px #00eaff;}
 
-.card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 25px #00eaff;
-}
-
-.card img{
-width:100%;
-height:180px;
+.product img{
+width:300px;
+height:300px;
 object-fit:cover;
-border-radius:10px;
+}
+
+.product-info{
+flex:1;
+padding:25px;
+}
+
+.product-info h3{
+margin-bottom:15px;
+color:#ff6a00;
+}
+
+.specs{
+font-size:14px;
+line-height:1.8;
+opacity:0.9;
+margin-bottom:15px;
 }
 
 .price{
-margin:10px 0;
-color:#ff6a00;
 font-size:18px;
+color:#00eaff;
+margin-bottom:15px;
 }
 
 button{
-background:#00eaff;
+background:#ff6a00;
 border:none;
-padding:10px 20px;
+padding:10px 25px;
 border-radius:20px;
 cursor:pointer;
 font-weight:bold;
-transition:0.3s;
 }
 
-button:hover{
-transform:scale(1.1);
-}
+button:hover{transform:scale(1.05);}
 
-footer{
-text-align:center;
-padding:20px;
-background:#0d1326;
-margin-top:50px;
-opacity:0.6;
-}
+footer{text-align:center;padding:20px;background:#0d1326;margin-top:40px;opacity:0.6;}
 </style>
 </head>
 
@@ -112,7 +77,6 @@ opacity:0.6;
 <h2>MIX ZONE</h2>
 <div>
 <a href="index.html">الرئيسية</a>
-<a href="contact.html">تواصل</a>
 <a href="https://www.facebook.com/mix.zone.22" target="_blank">فيسبوك</a>
 </div>
 </nav>
@@ -120,51 +84,106 @@ opacity:0.6;
 <div class="container">
 <h1>منتجاتنا 🔥</h1>
 
-<div class="grid">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9" alt="">
-<h3>iPhone 13</h3>
+<!-- iPhone -->
+<div class="product">
+<img src="https://images.unsplash.com/photo-1632661674596-df8be070a5c5" alt="">
+<div class="product-info">
+<h3>iPhone 13 - 128GB</h3>
+<div class="specs">
+• شاشة 6.1 بوصة Super Retina XDR<br>
+• معالج A15 Bionic<br>
+• كاميرا مزدوجة 12MP<br>
+• بطارية تدوم طوال اليوم<br>
+• يدعم 5G
+</div>
 <div class="price">25,000 جنيه</div>
 <button onclick="order()">اطلب الآن</button>
 </div>
+</div>
 
-<div class="card">
+<!-- AirPods -->
+<div class="product">
 <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad" alt="">
+<div class="product-info">
 <h3>AirPods Pro</h3>
+<div class="specs">
+• عزل ضوضاء نشط<br>
+• صوت عالي الجودة<br>
+• مقاومة للماء<br>
+• بطارية حتى 24 ساعة<br>
+• شحن لاسلكي
+</div>
 <div class="price">1,200 جنيه</div>
 <button onclick="order()">اطلب الآن</button>
 </div>
+</div>
 
-<div class="card">
+<!-- Smart Watch -->
+<div class="product">
 <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b" alt="">
-<h3>Smart Watch</h3>
+<div class="product-info">
+<h3>Smart Watch Series 8</h3>
+<div class="specs">
+• شاشة AMOLED<br>
+• قياس نبضات القلب<br>
+• قياس نسبة الأكسجين<br>
+• تتبع رياضي<br>
+• إشعارات مكالمات ورسائل
+</div>
 <div class="price">950 جنيه</div>
 <button onclick="order()">اطلب الآن</button>
 </div>
+</div>
 
-<div class="card">
+<!-- Laptop -->
+<div class="product">
 <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8" alt="">
-<h3>Laptop HP</h3>
+<div class="product-info">
+<h3>HP Laptop i5</h3>
+<div class="specs">
+• معالج Intel Core i5<br>
+• رام 8GB<br>
+• SSD 512GB<br>
+• شاشة 15.6 بوصة Full HD<br>
+• كارت شاشة Intel UHD
+</div>
 <div class="price">18,000 جنيه</div>
 <button onclick="order()">اطلب الآن</button>
 </div>
+</div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7" alt="">
-<h3>RGB Keyboard</h3>
+<!-- Keyboard -->
+<div class="product">
+<img src="https://images.unsplash.com/photo-1615663245857-ac93bb7c39e7" alt="">
+<div class="product-info">
+<h3>RGB Gaming Keyboard</h3>
+<div class="specs">
+• إضاءة RGB متعددة الألوان<br>
+• مفاتيح ميكانيكال<br>
+• مضاد للماء<br>
+• تصميم Gaming احترافي
+</div>
 <div class="price">750 جنيه</div>
 <button onclick="order()">اطلب الآن</button>
 </div>
+</div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1587202372616-1d8a3a8b80b9" alt="">
-<h3>Gaming Mouse RGB</h3>
+<!-- Mouse -->
+<div class="product">
+<img src="https://images.unsplash.com/photo-1613145997970-db84a7975fbb" alt="">
+<div class="product-info">
+<h3>RGB Gaming Mouse</h3>
+<div class="specs">
+• DPI حتى 7200<br>
+• إضاءة RGB<br>
+• 6 أزرار تحكم<br>
+• مناسب للألعاب
+</div>
 <div class="price">450 جنيه</div>
 <button onclick="order()">اطلب الآن</button>
 </div>
-
 </div>
+
 </div>
 
 <footer>
