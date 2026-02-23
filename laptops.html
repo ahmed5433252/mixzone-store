@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laptops | Mix Zone</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+transition:.4s;
+overflow-x:hidden;
+}
+
+body.light{
+background:#f1f5f9;
+color:#111;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+background:#020617;
+box-shadow:0 0 20px #00f0ff55;
+}
+
+nav button{
+padding:6px 12px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+background:#00f0ff;
+font-weight:bold;
+}
+
+h1{
+text-align:center;
+margin:30px 0;
+color:#00f0ff;
+text-shadow:0 0 20px #00f0ff;
+}
+
+.filters{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
+justify-content:center;
+margin-bottom:20px;
+}
+
+select{
+padding:8px;
+border-radius:10px;
+border:none;
+background:#1e293b;
+color:white;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:30px;
+}
+
+.card{
+background:#1e293b;
+padding:15px;
+border-radius:15px;
+transition:.5s;
+position:relative;
+opacity:0;
+transform:translateY(40px);
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+.card:hover{
+transform:scale(1.05) rotateY(5deg);
+box-shadow:0 0 40px #00f0ff;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:contain;
+background:#0f172a;
+border-radius:10px;
+}
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+background:#00f0ff;
+color:black;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
+}
+
+.price{margin:10px 0;font-weight:bold}
+
+button{
+width:100%;
+padding:7px;
+margin-top:6px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.cart-btn{background:#00f0ff;color:black}
+.wish-btn{background:#ff2e63;color:white}
+.compare-btn{background:#ffaa00;color:black}
+
+.compare-box{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+background:#020617;
+padding:15px;
+display:none;
+}
+
+.compare-box.active{display:flex;justify-content:space-around}
+
+.skeleton{
+height:280px;
+border-radius:15px;
+background:linear-gradient(90deg,#1e293b,#2d3b55,#1e293b);
+background-size:200%;
+animation:loading 1.5s infinite;
+}
+
+@keyframes loading{
+0%{background-position:200%}
+100%{background-position:-200%}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div style="color:#00f0ff;font-weight:bold;">Mix Zone</div>
+<button onclick="toggleMode()">🌙 / ☀️</button>
+</nav>
+
+<h1>💻 أقوى لابتوبات 2026</h1>
+
+<div class="filters">
+<select id="brandFilter" onchange="applyFilters()">
+<option value="all">كل الشركات</option>
+<option>ASUS</option>
+<option>MSI</option>
+<option>Apple</option>
+<option>Dell</option>
+<option>HP</option>
+<option>Lenovo</option>
+<option>Acer</option>
+<option>Razer</option>
+</select>
+
+<select id="categoryFilter" onchange="applyFilters()">
+<option value="all">كل الفئات</option>
+<option>Gaming</option>
+<option>Business</option>
+<option>Student</option>
+<option>Creator</option>
+</select>
+</div>
+
+<div class="products" id="products"></div>
+
+<div class="compare-box" id="compareBox"></div>
+
+<script>
+
+const fallback="https://dummyimage.com/600x600/0f172a/00f0ff&text=Mix+Zone";
+
+let products=[
+{id:1,name:"ASUS ROG Strix G16",brand:"ASUS",category:"Gaming",price:65000,badge:"🔥 Best Seller",specs:"i9 - RTX 4070 - 16GB - 1TB",image:"https://images.unsplash.com/photo-1593642632823-8f785ba67e45"},
+{id:2,name:"MSI Raider GE78",brand:"MSI",category:"Gaming",price:72000,badge:"NEW",specs:"i9 - RTX 4080 - 32GB - 1TB",image:"https://images.unsplash.com/photo-1587202372775-e229f172b9d7"},
+{id:3,name:"MacBook Pro M3",brand:"Apple",category:"Creator",price:90000,badge:"🔥",specs:"M3 Pro - 18GB - 512GB",image:"https://images.unsplash.com/photo-1517336714731-489689fd1ca8"},
+{id:4,name:"Dell XPS 15",brand:"Dell",category:"Business",price:75000,badge:"",specs:"i7 - RTX 4050 - 16GB - 1TB",image:"https://images.unsplash.com/photo-1588872657578-7efd1f1555ed"},
+{id:5,name:"HP Pavilion 15",brand:"HP",category:"Student",price:26000,badge:"",specs:"i5 - 8GB - 512GB",image:"https://images.unsplash.com/photo-1598550476439-6847785fcea6"},
+{id:6,name:"Lenovo Legion 5",brand:"Lenovo",category:"Gaming",price:58000,badge:"",specs:"Ryzen 7 - RTX 4060 - 16GB",image:"https://images.unsplash.com/photo-1611186871348-b1ce696e52c9"},
+{id:7,name:"Acer Aspire 5",brand:"Acer",category:"Student",price:24000,badge:"",specs:"Ryzen 5 - 8GB - 512GB",image:"https://images.unsplash.com/photo-1587614382346-4ecf1a0c2c34"},
+{id:8,name:"Razer Blade 16",brand:"Razer",category:"Gaming",price:95000,badge:"NEW",specs:"i9 - RTX 4090 - 32GB - 2TB",image:"https://images.unsplash.com/photo-1606813907291-d86efa9b94db"}
+];
+
+while(products.length<20){
+let base=products[products.length%8];
+products.push({...base,id:products.length+1,name:base.name+" Edition "+products.length});
+}
+
+let compareList=[];
+
+function displayProducts(list){
+let container=document.getElementById("products");
+container.innerHTML="";
+list.forEach((p,i)=>{
+container.innerHTML+=`
+<div class="card" id="card${i}">
+${p.badge?`<div class="badge">${p.badge}</div>`:""}
+<img src="${p.image}" onerror="this.src='${fallback}'">
+<h3>${p.name}</h3>
+<p>${p.specs}</p>
+<p class="price">${p.price} جنيه</p>
+<button class="cart-btn" onclick="flyToCart()">🛒 إضافة</button>
+<button class="wish-btn">❤️ مفضلة</button>
+<button class="compare-btn" onclick="addCompare(${p.id})">⚔ مقارنة</button>
+</div>`;
+setTimeout(()=>document.getElementById("card"+i).classList.add("show"),100*i);
+});
+}
+
+function applyFilters(){
+let brand=document.getElementById("brandFilter").value;
+let category=document.getElementById("categoryFilter").value;
+let filtered=[...products];
+if(brand!="all") filtered=filtered.filter(p=>p.brand==brand);
+if(category!="all") filtered=filtered.filter(p=>p.category==category);
+displayProducts(filtered);
+}
+
+function addCompare(id){
+let p=products.find(x=>x.id==id);
+if(compareList.length<2) compareList.push(p);
+if(compareList.length==2){
+let box=document.getElementById("compareBox");
+box.classList.add("active");
+box.innerHTML=`
+<div>${compareList[0].name}<br>${compareList[0].specs}</div>
+<div>${compareList[1].name}<br>${compareList[1].specs}</div>
+`;
+compareList=[];
+}
+}
+
+function toggleMode(){
+document.body.classList.toggle("light");
+}
+
+function flyToCart(){
+alert("تمت الإضافة بنجاح 🔥");
+}
+
+displayProducts(products);
+
+</script>
+</body>
+</html>
