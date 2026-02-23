@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MixZone Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+body{background:#0f172a;color:#e5e7eb}
+
+/* NAVBAR */
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:#111827;
+position:sticky;
+top:0;
+z-index:1000;
+}
+nav h2{color:#3b82f6}
+nav button{
+background:#3b82f6;
+border:none;
+padding:8px 15px;
+border-radius:6px;
+color:#fff;
+cursor:pointer;
+}
+
+/* HERO */
+.hero{
+text-align:center;
+padding:60px 20px;
+background:linear-gradient(135deg,#3b82f6,#8b5cf6);
+}
+.hero h1{font-size:40px;margin-bottom:10px}
+.hero p{font-size:18px}
+
+/* PRODUCTS */
+.section{padding:40px 8%}
+.section h2{margin-bottom:20px}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+}
+
+.card{
+background:#1e293b;
+padding:20px;
+border-radius:12px;
+text-align:center;
+transition:.3s;
+}
+.card:hover{transform:translateY(-5px)}
+.card h4{margin:10px 0}
+.card button{
+margin-top:10px;
+background:#3b82f6;
+border:none;
+padding:8px 12px;
+border-radius:6px;
+color:white;
+cursor:pointer;
+}
+
+/* CART */
+.cart-panel{
+position:fixed;
+right:-350px;
+top:0;
+width:300px;
+height:100%;
+background:#111827;
+padding:20px;
+transition:.4s;
+overflow:auto;
+z-index:2000;
+}
+.cart-panel.active{right:0}
+.cart-item{margin-bottom:10px;font-size:14px}
+.checkout-btn{
+margin-top:15px;
+width:100%;
+background:#8b5cf6;
+padding:10px;
+border:none;
+color:#fff;
+border-radius:6px;
+cursor:pointer;
+}
+
+/* CHAT BOT */
+.chat-btn{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#3b82f6;
+width:55px;
+height:55px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:22px;
+}
+
+.chat-box{
+position:fixed;
+bottom:90px;
+left:20px;
+width:260px;
+background:#1e293b;
+padding:15px;
+border-radius:12px;
+display:none;
+}
+
+.chat-box button{
+margin-top:5px;
+width:100%;
+}
+
+/* RESPONSIVE */
+@media(max-width:600px){
+.hero h1{font-size:28px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<h2>MixZone Store</h2>
+<button onclick="toggleCart()">🛒 Cart</button>
+</nav>
+
+<div class="hero">
+<h1>Mobile • Accessories • Tech</h1>
+<p>شحن لجميع المحافظات | الدفع عند الاستلام</p>
+</div>
+
+<div class="section">
+<h2>📱 Mobiles</h2>
+<div class="grid" id="mobiles"></div>
+</div>
+
+<div class="section">
+<h2>🎧 Accessories</h2>
+<div class="grid" id="accessories"></div>
+</div>
+
+<!-- CART PANEL -->
+<div class="cart-panel" id="cartPanel">
+<h3>🛒 Your Cart</h3>
+<div id="cartItems"></div>
+<h4 id="totalPrice">Total: 0 EGP</h4>
+<button class="checkout-btn" onclick="checkout()">Checkout</button>
+</div>
+
+<!-- CHAT -->
+<div class="chat-btn" onclick="toggleChat()">💬</div>
+
+<div class="chat-box" id="chatBox">
+<p>👋 Welcome to MixZone!</p>
+<button onclick="alert('Our best Mobiles start from 15000 EGP')">Mobiles</button>
+<button onclick="alert('Accessories from 3000 EGP')">Accessories</button>
+</div>
+
+<script>
+const products=[
+{id:1,name:"iPhone 14",price:35000,cat:"mobiles"},
+{id:2,name:"Samsung A54",price:15000,cat:"mobiles"},
+{id:3,name:"AirPods Pro",price:4500,cat:"accessories"},
+{id:4,name:"Smart Watch",price:3000,cat:"accessories"}
+];
+
+let cart=[];
+
+function renderProducts(){
+products.forEach(p=>{
+const card=document.createElement("div");
+card.className="card";
+card.innerHTML=`
+<h4>${p.name}</h4>
+<p>${p.price} EGP</p>
+<button onclick="addToCart(${p.id})">Add to Cart</button>
+`;
+document.getElementById(p.cat).appendChild(card);
+});
+}
+
+function addToCart(id){
+const product=products.find(p=>p.id===id);
+cart.push(product);
+updateCart();
+}
+
+function updateCart(){
+const cartItems=document.getElementById("cartItems");
+cartItems.innerHTML="";
+let total=0;
+cart.forEach(item=>{
+total+=item.price;
+cartItems.innerHTML+=`<div class="cart-item">${item.name} - ${item.price} EGP</div>`;
+});
+document.getElementById("totalPrice").innerText="Total: "+total+" EGP";
+}
+
+function toggleCart(){
+document.getElementById("cartPanel").classList.toggle("active");
+}
+
+function checkout(){
+if(cart.length===0){
+alert("Cart is empty");
+return;
+}
+alert("Order placed successfully! We will contact you.");
+cart=[];
+updateCart();
+toggleCart();
+}
+
+function toggleChat(){
+const box=document.getElementById("chatBox");
+box.style.display=box.style.display==="block"?"none":"block";
+}
+
+renderProducts();
+</script>
+
+</body>
+</html>
