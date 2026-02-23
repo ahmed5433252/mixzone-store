@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إتمام الطلب | Mix Zone</title>
+
+<style>
+body{
+background:#0f172a;
+color:white;
+font-family:Arial;
+margin:0;
+padding:40px;
+}
+
+.container{
+max-width:500px;
+margin:auto;
+background:#1e293b;
+padding:30px;
+border-radius:15px;
+}
+
+h2{
+text-align:center;
+color:#00eaff;
+margin-bottom:20px;
+}
+
+input,textarea{
+width:100%;
+padding:10px;
+margin-bottom:15px;
+border:none;
+border-radius:8px;
+}
+
+button{
+width:100%;
+padding:12px;
+background:#f97316;
+border:none;
+border-radius:8px;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+background:#00eaff;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+<h2>إتمام الطلب</h2>
+
+<input type="text" id="name" placeholder="الاسم بالكامل">
+<input type="text" id="phone" placeholder="رقم الموبايل">
+<input type="text" id="address" placeholder="العنوان بالتفصيل">
+<input type="text" id="city" placeholder="المحافظة">
+<textarea id="notes" placeholder="ملاحظات إضافية"></textarea>
+
+<button onclick="sendOrder()">تأكيد الطلب</button>
+</div>
+
+<script>
+function sendOrder(){
+let name=document.getElementById("name").value;
+let phone=document.getElementById("phone").value;
+let address=document.getElementById("address").value;
+let city=document.getElementById("city").value;
+let notes=document.getElementById("notes").value;
+
+let owner="201552998637";
+
+let message=
+"طلب جديد من Mix Zone:%0A%0A"+
+"الاسم: "+name+"%0A"+
+"رقم العميل: "+phone+"%0A"+
+"العنوان: "+address+"%0A"+
+"المحافظة: "+city+"%0A"+
+"ملاحظات: "+notes;
+
+window.open("https://wa.me/"+owner+"?text="+message);
+}
+</script>
+
+</body>
+</html>
