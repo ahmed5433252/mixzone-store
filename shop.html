@@ -244,6 +244,115 @@ window.location.href="checkout.html";
 
 updateCart();
 </script>
+<style>
+.chat-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#f97316;
+width:60px;
+height:60px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:26px;
+cursor:pointer;
+z-index:1000;
+}
 
+.chat-box{
+position:fixed;
+bottom:90px;
+right:20px;
+width:300px;
+background:#111827;
+padding:15px;
+border-radius:15px;
+display:none;
+}
+
+.chat-messages{
+height:200px;
+overflow-y:auto;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.chat-input{
+display:flex;
+}
+
+.chat-input input{
+flex:1;
+padding:8px;
+border:none;
+border-radius:5px;
+}
+
+.chat-input button{
+padding:8px;
+border:none;
+background:#00eaff;
+cursor:pointer;
+}
+</style>
+
+<div class="chat-btn" onclick="toggleChat()">💬</div>
+
+<div class="chat-box" id="chatBox">
+<div class="chat-messages" id="chatMessages">
+<div>أهلاً 👋 أنا مساعد Mix Zone. بتدور على إيه؟</div>
+</div>
+<div class="chat-input">
+<input type="text" id="userInput" placeholder="اكتب هنا...">
+<button onclick="sendMessage()">إرسال</button>
+</div>
+</div>
+
+<script>
+function toggleChat(){
+let box=document.getElementById("chatBox");
+box.style.display=box.style.display==="block"?"none":"block";
+}
+
+function sendMessage(){
+let input=document.getElementById("userInput");
+let msg=input.value.toLowerCase();
+let chat=document.getElementById("chatMessages");
+
+if(!msg) return;
+
+chat.innerHTML+=`<div>أنت: ${msg}</div>`;
+
+let reply="";
+
+if(msg.includes("موبايل") || msg.includes("هاتف")){
+reply="أنصحك بـ Samsung Galaxy A06 بسعر 5500 جنيه 🔥";
+}
+else if(msg.includes("لابتوب")){
+reply="عندك HP ProBook 450 بسعر 18000 جنيه 💻";
+}
+else if(msg.includes("سماعة") || msg.includes("ايربود")){
+reply="AirPods 3 اختيار ممتاز بسعر 1200 جنيه 🎧";
+}
+else if(msg.includes("ساعه")){
+reply="X8 Ultra Plus بـ 950 جنيه ⌚";
+}
+else if(msg.includes("كيبورد")){
+reply="RGB Keyboard بـ 750 جنيه ⌨️";
+}
+else if(msg.includes("ماوس")){
+reply="RGB Mouse بـ 450 جنيه 🖱";
+}
+else{
+reply="قولّي بتدور على إيه أو ميزانيتك كام؟";
+}
+
+chat.innerHTML+=`<div style="color:#00eaff">البوت: ${reply}</div>`;
+input.value="";
+chat.scrollTop=chat.scrollHeight;
+}
+</script>
 </body>
 </html>
