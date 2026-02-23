@@ -10,129 +10,102 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
 
 body{
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+background:#0f172a;
 color:white;
 }
 
 nav{
-background:#0b132b;
+background:#020617;
 padding:20px;
 text-align:center;
 font-size:24px;
 font-weight:bold;
 position:relative;
-color:#00f5ff;
+color:#00eaff;
 }
 
 .owner{
 position:absolute;
 left:20px;
 top:22px;
-font-size:15px;
-color:#ff9800;
+font-size:14px;
+color:#f97316;
 }
 
 .container{
 padding:40px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-gap:30px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:25px;
 }
 
 .card{
-background:#16213e;
-border-radius:20px;
+background:#1e293b;
+border-radius:15px;
 padding:20px;
 text-align:center;
-transition:0.4s;
-box-shadow:0 0 15px rgba(0,255,255,0.1);
+transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 25px #00f5ff;
+transform:translateY(-8px);
+box-shadow:0 0 20px #00eaff;
 }
 
 .card img{
 width:100%;
-height:220px;
-object-fit:cover;
-border-radius:15px;
+height:200px;
+object-fit:contain;
+background:#0f172a;
+border-radius:10px;
+padding:10px;
 }
 
 h3{
 margin:15px 0;
-color:#00f5ff;
+color:#00eaff;
 }
 
 .specs{
 font-size:14px;
-line-height:1.8;
-color:#ccc;
-margin-bottom:10px;
+line-height:1.7;
+color:#cbd5e1;
 }
 
 .price{
-color:#ff9800;
-font-size:18px;
 margin:10px 0;
+color:#f97316;
+font-size:18px;
 font-weight:bold;
 }
 
 button{
-background:#00f5ff;
+background:#00eaff;
 border:none;
-padding:10px 22px;
-border-radius:30px;
+padding:8px 20px;
+border-radius:20px;
 cursor:pointer;
-transition:0.3s;
 font-weight:bold;
+transition:0.3s;
 }
 
 button:hover{
-background:#ff9800;
-transform:scale(1.1);
+background:#f97316;
 }
 
-/* Chat */
-.chat-toggle{
+.chat{
 position:fixed;
 bottom:20px;
 right:20px;
-background:#ff9800;
-width:60px;
-height:60px;
+background:#f97316;
+width:55px;
+height:55px;
 border-radius:50%;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:26px;
+font-size:24px;
 cursor:pointer;
-}
-
-.chat-box{
-position:fixed;
-bottom:90px;
-right:20px;
-background:white;
-color:black;
-width:260px;
-border-radius:15px;
-padding:15px;
-display:none;
-}
-
-.chat-box input{
-width:100%;
-padding:8px;
-margin-top:10px;
-}
-
-.chat-box button{
-margin-top:8px;
-width:100%;
-background:#00c853;
-color:white;
 }
 </style>
 </head>
@@ -147,7 +120,7 @@ Mix Zone Store
 <div class="container">
 
 <div class="card">
-<img src="https://source.unsplash.com/600x600/?samsung,smartphone">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Samsung_Galaxy_A_series_smartphone.jpg">
 <h3>Samsung Galaxy A06</h3>
 <div class="specs">
 شاشة 6.7 بوصة<br>
@@ -161,7 +134,7 @@ RAM 4GB<br>
 </div>
 
 <div class="card">
-<img src="https://source.unsplash.com/600x600/?hp,laptop">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/HP_ProBook_450_G5.jpg">
 <h3>HP ProBook 450</h3>
 <div class="specs">
 Intel Core i5<br>
@@ -174,7 +147,7 @@ Intel Core i5<br>
 </div>
 
 <div class="card">
-<img src="https://source.unsplash.com/600x600/?airpods">
+<img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/AirPods_3rd_Generation.png">
 <h3>AirPods 3</h3>
 <div class="specs">
 Spatial Audio<br>
@@ -186,7 +159,7 @@ Bluetooth سريع
 </div>
 
 <div class="card">
-<img src="https://source.unsplash.com/600x600/?smartwatch">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Apple_Watch_Ultra.png">
 <h3>X8 Ultra Plus</h3>
 <div class="specs">
 مكالمات بلوتوث<br>
@@ -198,7 +171,7 @@ Bluetooth سريع
 </div>
 
 <div class="card">
-<img src="https://source.unsplash.com/600x600/?rgb,gaming,keyboard">
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Computer_keyboard.png">
 <h3>RGB Gaming Keyboard</h3>
 <div class="specs">
 إضاءة RGB<br>
@@ -206,11 +179,11 @@ Anti-Ghosting<br>
 USB سريع
 </div>
 <div class="price">750 جنيه</div>
-<button onclick="order('RGB Gaming Keyboard')">اطلب الآن</button>
+<button onclick="order('RGB Keyboard')">اطلب الآن</button>
 </div>
 
 <div class="card">
-<img src="https://source.unsplash.com/600x600/?rgb,gaming,mouse">
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Computer_mouse.jpg">
 <h3>RGB Gaming Mouse</h3>
 <div class="specs">
 DPI 7200<br>
@@ -218,29 +191,18 @@ DPI 7200<br>
 دقة عالية
 </div>
 <div class="price">450 جنيه</div>
-<button onclick="order('RGB Gaming Mouse')">اطلب الآن</button>
+<button onclick="order('RGB Mouse')">اطلب الآن</button>
 </div>
 
 </div>
 
-<div class="chat-toggle" onclick="toggleChat()">💬</div>
-
-<div class="chat-box" id="chatBox">
-أهلاً 👋 محتاج مساعدة؟
-<input type="text" placeholder="اكتب سؤالك">
-<button onclick="alert('سيتم التواصل معك قريباً')">إرسال</button>
-</div>
+<div class="chat">💬</div>
 
 <script>
 function order(product){
 let phone="201552998637";
 let message="عايز أطلب "+product+" من Mix Zone";
 window.open("https://wa.me/"+phone+"?text="+encodeURIComponent(message));
-}
-
-function toggleChat(){
-let box=document.getElementById("chatBox");
-box.style.display=box.style.display==="block"?"none":"block";
 }
 </script>
 
