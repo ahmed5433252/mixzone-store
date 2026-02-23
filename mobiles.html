@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mobiles | Mix Zone</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+
+body{
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+overflow-x:hidden;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+background:#020617;
+box-shadow:0 0 20px #00f0ff55;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 15px;
+}
+
+nav a:hover{color:#00f0ff}
+
+h1{
+text-align:center;
+margin:40px 0;
+color:#00f0ff;
+text-shadow:0 0 15px #00f0ff;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:25px;
+padding:40px;
+}
+
+.card{
+background:#1e293b;
+border-radius:15px;
+padding:15px;
+transition:.3s;
+position:relative;
+}
+
+.card:hover{
+transform:translateY(-8px);
+box-shadow:0 0 25px #00f0ff88;
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:10px;
+}
+
+.card h3{
+margin:10px 0;
+color:#00f0ff;
+}
+
+.price{
+font-weight:bold;
+margin:5px 0;
+}
+
+button{
+padding:8px;
+width:100%;
+border:none;
+border-radius:20px;
+background:#00f0ff;
+color:black;
+font-weight:bold;
+cursor:pointer;
+margin-top:10px;
+}
+
+button:hover{background:white}
+
+/* Cart */
+.cart{
+position:fixed;
+top:0;
+right:0;
+width:300px;
+height:100%;
+background:#0f172a;
+box-shadow:-5px 0 20px #00f0ff55;
+padding:20px;
+overflow-y:auto;
+}
+
+.cart h2{
+text-align:center;
+margin-bottom:20px;
+color:#00f0ff;
+}
+
+.cart-item{
+margin-bottom:15px;
+border-bottom:1px solid #333;
+padding-bottom:10px;
+}
+
+.total{
+margin-top:20px;
+font-weight:bold;
+}
+
+.remove{
+background:red;
+color:white;
+margin-top:5px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div style="color:#00f0ff;font-weight:bold;">Mix Zone</div>
+<div>
+<a href="index.html">الرئيسية</a>
+<a href="gaming.html">Gaming</a>
+</div>
+</nav>
+
+<h1>📱 أحدث الموبايلات</h1>
+
+<div class="products" id="products"></div>
+
+<div class="cart">
+<h2>🛒 سلة المشتريات</h2>
+<div id="cartItems"></div>
+<div class="total" id="totalPrice">الإجمالي: 0 جنيه</div>
+</div>
+
+<script>
+
+let products = [];
+
+for(let i=1;i<=20;i++){
+products.push({
+id:i,
+name:"Smart Phone Model "+i,
+price:15000 + (i*500),
+specs:"128GB - 8GB RAM - 5000mAh",
+image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
+});
+}
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function displayProducts(){
+let container=document.getElementById("products");
+container.innerHTML="";
+products.forEach(p=>{
+container.innerHTML+=`
+<div class="card">
+<img src="${p.image}">
+<h3>${p.name}</h3>
+<p>${p.specs}</p>
+<p class="price">${p.price} جنيه</p>
+<button onclick="addToCart(${p.id})">إضافة للسلة</button>
+</div>
+`;
+});
+}
+
+function addToCart(id){
+let product=products.find(p=>p.id===id);
+cart.push(product);
+localStorage.setItem("cart",JSON.stringify(cart));
+displayCart();
+}
+
+function displayCart(){
+let cartBox=document.getElementById("cartItems");
+cartBox.innerHTML="";
+let total=0;
+
+cart.forEach((item,index)=>{
+total+=item.price;
+cartBox.innerHTML+=`
+<div class="cart-item">
+<p>${item.name}</p>
+<p>${item.price} جنيه</p>
+<button class="remove" onclick="removeItem(${index})">حذف</button>
+</div>
+`;
+});
+
+document.getElementById("totalPrice").innerText="الإجمالي: "+total+" جنيه";
+}
+
+function removeItem(index){
+cart.splice(index,1);
+localStorage.setItem("cart",JSON.stringify(cart));
+displayCart();
+}
+
+displayProducts();
+displayCart();
+
+</script>
+
+</body>
+</html>
