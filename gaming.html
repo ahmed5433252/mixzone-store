@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gaming Zone | Mix Zone</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+
+body{
+background:linear-gradient(135deg,#0f0c29,#1a1a2e,#16213e);
+color:white;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 50px;
+background:#000;
+box-shadow:0 0 25px #ff00ff55;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+margin:0 15px;
+}
+
+nav a:hover{color:#00f0ff}
+
+.hero{
+text-align:center;
+padding:80px 20px;
+background:url("https://images.unsplash.com/photo-1605902711622-cfb43c4437d1?auto=format&fit=crop&w=1600&q=80") center/cover;
+}
+
+.hero h1{
+font-size:50px;
+color:#00f0ff;
+text-shadow:0 0 20px #00f0ff;
+}
+
+.hero p{
+margin-top:15px;
+font-size:20px;
+}
+
+.sections{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+padding:60px;
+}
+
+.card{
+background:#111827;
+border-radius:15px;
+overflow:hidden;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px #00f0ff88;
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.card h3{
+padding:20px;
+text-align:center;
+color:#00f0ff;
+}
+
+.card button{
+margin:0 20px 20px;
+padding:10px;
+width:calc(100% - 40px);
+border:none;
+border-radius:25px;
+background:#00f0ff;
+color:black;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.card button:hover{
+background:white;
+}
+
+footer{
+background:#000;
+padding:30px;
+text-align:center;
+margin-top:40px;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+<div style="color:#00f0ff;font-weight:bold;">Gaming Zone</div>
+<div>
+<a href="index.html">الرئيسية</a>
+<a href="shop.html">المتجر</a>
+<a href="about.html">من نحن</a>
+</div>
+</nav>
+
+<section class="hero">
+<h1>🔥 Gaming Zone 🔥</h1>
+<p>أفضل أجهزة وإكسسوارات الجيمنج باحترافية عالية</p>
+</section>
+
+<section class="sections">
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80">
+<h3>PC Gaming</h3>
+<button onclick="goWhats('PC Gaming')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1603791440384-56cd371ee9a7?auto=format&fit=crop&w=600&q=80">
+<h3>Laptop Gaming</h3>
+<button onclick="goWhats('Laptop Gaming')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=600&q=80">
+<h3>Gaming Monitor</h3>
+<button onclick="goWhats('Gaming Monitor')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=600&q=80">
+<h3>Keyboard & Mouse RGB</h3>
+<button onclick="goWhats('Gaming Accessories')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1585386959984-a41552231658?auto=format&fit=crop&w=600&q=80">
+<h3>Gaming Headset</h3>
+<button onclick="goWhats('Gaming Headset')">اطلب الآن</button>
+</div>
+
+<div class="card">
+<img src="https://images.unsplash.com/photo-1616628182500-d0a4f61b3e9d?auto=format&fit=crop&w=600&q=80">
+<h3>Gaming Chair</h3>
+<button onclick="goWhats('Gaming Chair')">اطلب الآن</button>
+</div>
+
+</section>
+
+<footer>
+© 2026 Mix Zone Gaming | Ahmed Waleed
+</footer>
+
+<script>
+function goWhats(product){
+let phone="201552998637";
+let message="مرحبًا 👋 أريد الاستفسار عن قسم " + product + " في Gaming Zone";
+let url="https://wa.me/"+phone+"?text="+encodeURIComponent(message);
+window.open(url,"_blank");
+}
+</script>
+
+</body>
+</html>
