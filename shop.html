@@ -85,13 +85,14 @@ border-radius:20px;
 cursor:pointer;
 font-weight:bold;
 transition:0.3s;
+margin-top:5px;
 }
 
 button:hover{
 background:#f97316;
 }
 
-/* Cart Panel */
+/* Cart */
 .cart{
 position:fixed;
 top:0;
@@ -114,10 +115,17 @@ color:#00eaff;
 }
 
 .cart-item{
-margin-bottom:10px;
+display:flex;
+justify-content:space-between;
 font-size:14px;
+margin-bottom:10px;
 border-bottom:1px solid #334155;
 padding-bottom:5px;
+}
+
+.remove{
+color:red;
+cursor:pointer;
 }
 
 .checkout{
@@ -141,42 +149,42 @@ Mix Zone Store
 <div class="card">
 <div class="icon">📱</div>
 <h3>Samsung Galaxy A06</h3>
-<div class="price">5500</div>
+<div class="price">5500 جنيه</div>
 <button onclick="addToCart('Samsung Galaxy A06',5500)">أضف للسلة</button>
 </div>
 
 <div class="card">
 <div class="icon">💻</div>
 <h3>HP ProBook 450</h3>
-<div class="price">18000</div>
+<div class="price">18000 جنيه</div>
 <button onclick="addToCart('HP ProBook 450',18000)">أضف للسلة</button>
 </div>
 
 <div class="card">
 <div class="icon">🎧</div>
 <h3>AirPods 3</h3>
-<div class="price">1200</div>
+<div class="price">1200 جنيه</div>
 <button onclick="addToCart('AirPods 3',1200)">أضف للسلة</button>
 </div>
 
 <div class="card">
 <div class="icon">⌚</div>
 <h3>X8 Ultra Plus</h3>
-<div class="price">950</div>
+<div class="price">950 جنيه</div>
 <button onclick="addToCart('X8 Ultra Plus',950)">أضف للسلة</button>
 </div>
 
 <div class="card">
 <div class="icon">⌨️</div>
 <h3>RGB Keyboard</h3>
-<div class="price">750</div>
+<div class="price">750 جنيه</div>
 <button onclick="addToCart('Keyboard',750)">أضف للسلة</button>
 </div>
 
 <div class="card">
 <div class="icon">🖱</div>
 <h3>RGB Mouse</h3>
-<div class="price">450</div>
+<div class="price">450 جنيه</div>
 <button onclick="addToCart('Mouse',450)">أضف للسلة</button>
 </div>
 
@@ -186,37 +194,55 @@ Mix Zone Store
 <h2>سلة المشتريات</h2>
 <div id="cartItems"></div>
 <h3>الإجمالي: <span id="total">0</span> جنيه</h3>
-<button class="checkout" onclick="checkout()">إتمام الطلب</button>
+<button class="checkout" onclick="goCheckout()">إتمام الطلب</button>
 </div>
 
 <script>
-let cart=[];
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart));
+}
+
 function addToCart(name,price){
 cart.push({name,price});
 updateCart();
+saveCart();
 }
+
 function updateCart(){
 let items=document.getElementById("cartItems");
 let total=0;
 items.innerHTML="";
-cart.forEach(item=>{
+
+cart.forEach((item,index)=>{
 total+=item.price;
-items.innerHTML+=`<div class="cart-item">${item.name} - ${item.price} جنيه</div>`;
+items.innerHTML+=`
+<div class="cart-item">
+<span>${item.name} - ${item.price} جنيه</span>
+<span class="remove" onclick="removeItem(${index})">❌</span>
+</div>`;
 });
+
 document.getElementById("total").innerText=total;
 document.getElementById("count").innerText=cart.length;
 }
+
+function removeItem(index){
+cart.splice(index,1);
+updateCart();
+saveCart();
+}
+
 function toggleCart(){
 document.getElementById("cart").classList.toggle("active");
 }
-function checkout(){
-let phone="201552998637";
-let message="طلب جديد:%0A";
-cart.forEach(item=>{
-message+=item.name+" - "+item.price+" جنيه%0A";
-});
-window.open("https://wa.me/"+phone+"?text="+message);
+
+function goCheckout(){
+window.location.href="checkout.html";
 }
+
+updateCart();
 </script>
 
 </body>
