@@ -11,44 +11,75 @@
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
 
 body{
-background:linear-gradient(135deg,#0f0c29,#1a1a2e,#16213e);
+background:#0f0c29;
 color:white;
+overflow-x:hidden;
 }
 
+/* Loading Screen */
+#loader{
+position:fixed;
+width:100%;
+height:100%;
+background:#000;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:9999;
+}
+
+.loader-text{
+font-size:30px;
+color:#00f0ff;
+animation:blink 1s infinite alternate;
+}
+
+@keyframes blink{
+from{opacity:0.3;}
+to{opacity:1;}
+}
+
+/* Navbar */
 nav{
 display:flex;
 justify-content:space-between;
 align-items:center;
 padding:20px 50px;
 background:#000;
-box-shadow:0 0 25px #ff00ff55;
+box-shadow:0 0 20px #00f0ff55;
 }
 
 nav a{
 color:white;
 text-decoration:none;
 margin:0 15px;
+transition:.3s;
 }
 
 nav a:hover{color:#00f0ff}
 
+/* Parallax */
 .hero{
+height:60vh;
+background:url("https://images.unsplash.com/photo-1605902711622-cfb43c4437d1?auto=format&fit=crop&w=1600&q=80") center/cover fixed;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 text-align:center;
-padding:80px 20px;
-background:url("https://images.unsplash.com/photo-1605902711622-cfb43c4437d1?auto=format&fit=crop&w=1600&q=80") center/cover;
 }
 
 .hero h1{
 font-size:50px;
 color:#00f0ff;
-text-shadow:0 0 20px #00f0ff;
+text-shadow:0 0 25px #00f0ff;
 }
 
 .hero p{
 margin-top:15px;
-font-size:20px;
 }
 
+/* Cards Section */
 .sections{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
@@ -60,12 +91,32 @@ padding:60px;
 background:#111827;
 border-radius:15px;
 overflow:hidden;
-transition:.3s;
+transition:.4s;
+position:relative;
+transform-style:preserve-3d;
 }
 
+/* Neon Animation Border */
+.card::before{
+content:"";
+position:absolute;
+inset:-2px;
+border-radius:15px;
+background:linear-gradient(45deg,#00f0ff,#ff00ff,#00f0ff);
+background-size:300%;
+z-index:-1;
+animation:neon 6s linear infinite;
+}
+
+@keyframes neon{
+0%{background-position:0%}
+100%{background-position:300%}
+}
+
+/* 3D Hover */
 .card:hover{
-transform:translateY(-10px);
-box-shadow:0 0 25px #00f0ff88;
+transform:rotateY(10deg) rotateX(5deg) scale(1.05);
+box-shadow:0 0 40px #00f0ff;
 }
 
 .card img{
@@ -75,7 +126,7 @@ object-fit:cover;
 }
 
 .card h3{
-padding:20px;
+padding:15px;
 text-align:center;
 color:#00f0ff;
 }
@@ -97,6 +148,7 @@ transition:.3s;
 background:white;
 }
 
+/* Footer */
 footer{
 background:#000;
 padding:30px;
@@ -107,6 +159,10 @@ margin-top:40px;
 </head>
 
 <body>
+
+<div id="loader">
+<div class="loader-text">Loading Gaming Zone...</div>
+</div>
 
 <nav>
 <div style="color:#00f0ff;font-weight:bold;">Gaming Zone</div>
@@ -119,7 +175,7 @@ margin-top:40px;
 
 <section class="hero">
 <h1>🔥 Gaming Zone 🔥</h1>
-<p>أفضل أجهزة وإكسسوارات الجيمنج باحترافية عالية</p>
+<p>أفضل أجهزة وإكسسوارات الجيمنج</p>
 </section>
 
 <section class="sections">
@@ -137,25 +193,25 @@ margin-top:40px;
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?auto=format&fit=crop&w=600&q=80">
+<img src="https://images.unsplash.com/photo-1591488320449-011701bb6704?auto=format&fit=crop&w=600&q=80">
 <h3>Gaming Monitor</h3>
 <button onclick="goWhats('Gaming Monitor')">اطلب الآن</button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?auto=format&fit=crop&w=600&q=80">
+<img src="https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=600&q=80">
 <h3>Keyboard & Mouse RGB</h3>
 <button onclick="goWhats('Gaming Accessories')">اطلب الآن</button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1585386959984-a41552231658?auto=format&fit=crop&w=600&q=80">
+<img src="https://images.unsplash.com/photo-1616627459247-0a2c9f7e6a1c?auto=format&fit=crop&w=600&q=80">
 <h3>Gaming Headset</h3>
 <button onclick="goWhats('Gaming Headset')">اطلب الآن</button>
 </div>
 
 <div class="card">
-<img src="https://images.unsplash.com/photo-1616628182500-d0a4f61b3e9d?auto=format&fit=crop&w=600&q=80">
+<img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?auto=format&fit=crop&w=600&q=80">
 <h3>Gaming Chair</h3>
 <button onclick="goWhats('Gaming Chair')">اطلب الآن</button>
 </div>
@@ -167,9 +223,15 @@ margin-top:40px;
 </footer>
 
 <script>
+/* Loading hide */
+window.addEventListener("load",function(){
+document.getElementById("loader").style.display="none";
+});
+
+/* WhatsApp */
 function goWhats(product){
 let phone="201552998637";
-let message="مرحبًا 👋 أريد الاستفسار عن قسم " + product + " في Gaming Zone";
+let message="مرحبًا 👋 أريد الاستفسار عن " + product + " في Gaming Zone";
 let url="https://wa.me/"+phone+"?text="+encodeURIComponent(message);
 window.open(url,"_blank");
 }
