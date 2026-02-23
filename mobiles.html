@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mobiles | Mix Zone</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -16,6 +15,7 @@ color:white;
 overflow-x:hidden;
 }
 
+/* Navbar */
 nav{
 display:flex;
 justify-content:space-between;
@@ -25,44 +25,49 @@ background:#020617;
 box-shadow:0 0 20px #00f0ff55;
 }
 
-nav a{
-color:white;
-text-decoration:none;
-margin:0 15px;
-}
-
+nav a{color:white;text-decoration:none;margin:0 15px;}
 nav a:hover{color:#00f0ff}
 
+/* Title */
 h1{
 text-align:center;
 margin:40px 0;
 color:#00f0ff;
-text-shadow:0 0 15px #00f0ff;
+text-shadow:0 0 20px #00f0ff;
 }
 
+/* Grid */
 .products{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:30px;
 padding:40px;
 }
 
+/* Card */
 .card{
 background:#1e293b;
 border-radius:15px;
 padding:15px;
-transition:.3s;
+transition:.5s;
 position:relative;
+transform:translateY(40px);
+opacity:0;
+}
+
+.card.show{
+transform:translateY(0);
+opacity:1;
 }
 
 .card:hover{
-transform:translateY(-8px);
-box-shadow:0 0 25px #00f0ff88;
+transform:translateY(-10px) rotateX(5deg) rotateY(5deg);
+box-shadow:0 0 30px #00f0ff;
 }
 
 .card img{
 width:100%;
-height:180px;
+height:190px;
 object-fit:cover;
 border-radius:10px;
 }
@@ -70,15 +75,32 @@ border-radius:10px;
 .card h3{
 margin:10px 0;
 color:#00f0ff;
+font-size:18px;
+}
+
+.specs{
+font-size:13px;
+color:#bbb;
+margin-bottom:8px;
 }
 
 .price{
 font-weight:bold;
-margin:5px 0;
+margin:8px 0;
+}
+
+.badge{
+position:absolute;
+top:10px;
+left:10px;
+background:#ff0055;
+padding:5px 10px;
+border-radius:20px;
+font-size:12px;
 }
 
 button{
-padding:8px;
+padding:10px;
 width:100%;
 border:none;
 border-radius:20px;
@@ -86,10 +108,13 @@ background:#00f0ff;
 color:black;
 font-weight:bold;
 cursor:pointer;
-margin-top:10px;
+transition:.3s;
 }
 
-button:hover{background:white}
+button:hover{
+background:white;
+transform:scale(1.05);
+}
 
 /* Cart */
 .cart{
@@ -114,6 +139,7 @@ color:#00f0ff;
 margin-bottom:15px;
 border-bottom:1px solid #333;
 padding-bottom:10px;
+font-size:14px;
 }
 
 .total{
@@ -139,7 +165,7 @@ margin-top:5px;
 </div>
 </nav>
 
-<h1>📱 أحدث الموبايلات</h1>
+<h1>📱 أحدث الموبايلات 2026</h1>
 
 <div class="products" id="products"></div>
 
@@ -151,17 +177,88 @@ margin-top:5px;
 
 <script>
 
-let products = [];
+/* 20 Real Phones */
+let products = [
+{id:1,name:"Samsung Galaxy S24 Ultra",price:48000,
+specs:"Snapdragon 8 Gen 3 - 12GB RAM - 256GB - 200MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1709740364939-4a6a8b0d24dd?auto=format&fit=crop&w=600&q=80",badge:true},
 
-for(let i=1;i<=20;i++){
-products.push({
-id:i,
-name:"Smart Phone Model "+i,
-price:15000 + (i*500),
-specs:"128GB - 8GB RAM - 5000mAh",
-image:"https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80"
-});
-}
+{id:2,name:"iPhone 15 Pro Max",price:55000,
+specs:"A17 Pro - 8GB RAM - 256GB - 48MP - 4441mAh",
+image:"https://images.unsplash.com/photo-1695048133142-1a20484c09b4?auto=format&fit=crop&w=600&q=80",badge:true},
+
+{id:3,name:"Xiaomi 14",price:32000,
+specs:"Snapdragon 8 Gen 3 - 12GB - 512GB - 50MP - 4610mAh",
+image:"https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=600&q=80"},
+
+{id:4,name:"Samsung A55",price:18000,
+specs:"Exynos 1480 - 8GB - 256GB - 50MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1510557880182-3f8a7b6d6b5a?auto=format&fit=crop&w=600&q=80"},
+
+{id:5,name:"Redmi Note 13 Pro+",price:17000,
+specs:"Dimensity 7200 - 8GB - 256GB - 200MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80"},
+
+{id:6,name:"Realme GT 5",price:21000,
+specs:"Snapdragon 8 Gen 2 - 12GB - 256GB - 50MP - 5240mAh",
+image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"},
+
+{id:7,name:"Oppo Reno 11",price:16000,
+specs:"Dimensity 7050 - 8GB - 256GB - 50MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80"},
+
+{id:8,name:"Honor 90",price:15000,
+specs:"Snapdragon 7 Gen 1 - 12GB - 256GB - 200MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1580913428735-bd3c269d6a82?auto=format&fit=crop&w=600&q=80"},
+
+{id:9,name:"iPhone 14",price:35000,
+specs:"A15 Bionic - 6GB - 128GB - 12MP - 3279mAh",
+image:"https://images.unsplash.com/photo-1662947995680-1c7b7d33dcb7?auto=format&fit=crop&w=600&q=80"},
+
+{id:10,name:"Samsung S23 FE",price:26000,
+specs:"Exynos 2200 - 8GB - 256GB - 50MP - 4500mAh",
+image:"https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?auto=format&fit=crop&w=600&q=80"},
+
+{id:11,name:"Poco X6 Pro",price:14000,
+specs:"Dimensity 8300 - 12GB - 256GB - 64MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=600&q=80"},
+
+{id:12,name:"Nothing Phone 2",price:24000,
+specs:"Snapdragon 8+ Gen 1 - 12GB - 256GB - 50MP - 4700mAh",
+image:"https://images.unsplash.com/photo-1695048133301-04b8f2a444ef?auto=format&fit=crop&w=600&q=80"},
+
+{id:13,name:"Infinix Zero 30",price:12000,
+specs:"Dimensity 8020 - 8GB - 256GB - 108MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1580913428735-bd3c269d6a82?auto=format&fit=crop&w=600&q=80"},
+
+{id:14,name:"Huawei Nova 11",price:19000,
+specs:"Snapdragon 778G - 8GB - 256GB - 50MP - 4500mAh",
+image:"https://images.unsplash.com/photo-1601784550166-9f1a6e26c33a?auto=format&fit=crop&w=600&q=80"},
+
+{id:15,name:"Motorola Edge 40",price:20000,
+specs:"Dimensity 8020 - 8GB - 256GB - 50MP - 4400mAh",
+image:"https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=600&q=80"},
+
+{id:16,name:"iPhone 13",price:30000,
+specs:"A15 Bionic - 4GB - 128GB - 12MP - 3240mAh",
+image:"https://images.unsplash.com/photo-1633113215886-1e02f7e2d8b1?auto=format&fit=crop&w=600&q=80"},
+
+{id:17,name:"Samsung A34",price:15000,
+specs:"Dimensity 1080 - 8GB - 128GB - 48MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1510557880182-3f8a7b6d6b5a?auto=format&fit=crop&w=600&q=80"},
+
+{id:18,name:"Redmi 13C",price:9000,
+specs:"Helio G85 - 6GB - 128GB - 50MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=600&q=80"},
+
+{id:19,name:"Tecno Camon 20",price:10000,
+specs:"Helio G85 - 8GB - 256GB - 64MP - 5000mAh",
+image:"https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=600&q=80"},
+
+{id:20,name:"Vivo V29",price:21000,
+specs:"Snapdragon 778G - 8GB - 256GB - 50MP - 4600mAh",
+image:"https://images.unsplash.com/photo-1580913428735-bd3c269d6a82?auto=format&fit=crop&w=600&q=80"}
+];
 
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
@@ -171,14 +268,16 @@ container.innerHTML="";
 products.forEach(p=>{
 container.innerHTML+=`
 <div class="card">
+${p.badge ? '<div class="badge">Bestseller</div>' : ''}
 <img src="${p.image}">
 <h3>${p.name}</h3>
-<p>${p.specs}</p>
+<p class="specs">${p.specs}</p>
 <p class="price">${p.price} جنيه</p>
 <button onclick="addToCart(${p.id})">إضافة للسلة</button>
 </div>
 `;
 });
+animateOnScroll();
 }
 
 function addToCart(id){
@@ -211,6 +310,19 @@ function removeItem(index){
 cart.splice(index,1);
 localStorage.setItem("cart",JSON.stringify(cart));
 displayCart();
+}
+
+/* Scroll Animation */
+function animateOnScroll(){
+let cards=document.querySelectorAll(".card");
+let observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add("show");
+}
+});
+},{threshold:0.2});
+cards.forEach(card=>observer.observe(card));
 }
 
 displayProducts();
