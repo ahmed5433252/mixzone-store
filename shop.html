@@ -4,13 +4,12 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Mix Zone Store</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial}
 
 body{
-background:#0f172a;
+background:linear-gradient(135deg,#0f172a,#1e293b);
 color:white;
 }
 
@@ -33,18 +32,19 @@ color:#f97316;
 }
 
 .container{
-padding:40px;
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:25px;
+padding:40px;
 }
 
 .card{
 background:#1e293b;
+padding:25px;
 border-radius:15px;
-padding:20px;
 text-align:center;
 transition:0.3s;
+border:1px solid #334155;
 }
 
 .card:hover{
@@ -52,31 +52,28 @@ transform:translateY(-8px);
 box-shadow:0 0 20px #00eaff;
 }
 
-.card img{
-width:100%;
-height:200px;
-object-fit:contain;
-background:#0f172a;
-border-radius:10px;
-padding:10px;
+.icon{
+font-size:50px;
+margin-bottom:15px;
 }
 
 h3{
-margin:15px 0;
 color:#00eaff;
+margin-bottom:10px;
 }
 
 .specs{
 font-size:14px;
-line-height:1.7;
 color:#cbd5e1;
+line-height:1.8;
+margin-bottom:10px;
 }
 
 .price{
-margin:10px 0;
 color:#f97316;
 font-size:18px;
 font-weight:bold;
+margin:10px 0;
 }
 
 button{
@@ -93,19 +90,12 @@ button:hover{
 background:#f97316;
 }
 
-.chat{
-position:fixed;
-bottom:20px;
-right:20px;
-background:#f97316;
-width:55px;
-height:55px;
-border-radius:50%;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:24px;
-cursor:pointer;
+footer{
+text-align:center;
+padding:20px;
+background:#020617;
+margin-top:40px;
+color:#94a3b8;
 }
 </style>
 </head>
@@ -120,10 +110,9 @@ Mix Zone Store
 <div class="container">
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Samsung_Galaxy_A_series_smartphone.jpg">
+<div class="icon">📱</div>
 <h3>Samsung Galaxy A06</h3>
 <div class="specs">
-شاشة 6.7 بوصة<br>
 RAM 4GB<br>
 128GB<br>
 كاميرا 50MP<br>
@@ -134,7 +123,7 @@ RAM 4GB<br>
 </div>
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/HP_ProBook_450_G5.jpg">
+<div class="icon">💻</div>
 <h3>HP ProBook 450</h3>
 <div class="specs">
 Intel Core i5<br>
@@ -147,19 +136,19 @@ Intel Core i5<br>
 </div>
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/AirPods_3rd_Generation.png">
+<div class="icon">🎧</div>
 <h3>AirPods 3</h3>
 <div class="specs">
 Spatial Audio<br>
-6 ساعات تشغيل<br>
-Bluetooth سريع
+Bluetooth سريع<br>
+6 ساعات تشغيل
 </div>
 <div class="price">1,200 جنيه</div>
 <button onclick="order('AirPods 3')">اطلب الآن</button>
 </div>
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Apple_Watch_Ultra.png">
+<div class="icon">⌚</div>
 <h3>X8 Ultra Plus</h3>
 <div class="specs">
 مكالمات بلوتوث<br>
@@ -171,7 +160,7 @@ Bluetooth سريع
 </div>
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Computer_keyboard.png">
+<div class="icon">⌨️</div>
 <h3>RGB Gaming Keyboard</h3>
 <div class="specs">
 إضاءة RGB<br>
@@ -179,11 +168,11 @@ Anti-Ghosting<br>
 USB سريع
 </div>
 <div class="price">750 جنيه</div>
-<button onclick="order('RGB Keyboard')">اطلب الآن</button>
+<button onclick="order('Keyboard')">اطلب الآن</button>
 </div>
 
 <div class="card">
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Computer_mouse.jpg">
+<div class="icon">🖱</div>
 <h3>RGB Gaming Mouse</h3>
 <div class="specs">
 DPI 7200<br>
@@ -191,12 +180,14 @@ DPI 7200<br>
 دقة عالية
 </div>
 <div class="price">450 جنيه</div>
-<button onclick="order('RGB Mouse')">اطلب الآن</button>
+<button onclick="order('Mouse')">اطلب الآن</button>
 </div>
 
 </div>
 
-<div class="chat">💬</div>
+<footer>
+© 2026 Mix Zone Store - All Rights Reserved
+</footer>
 
 <script>
 function order(product){
